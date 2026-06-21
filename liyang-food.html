@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>溧阳美食免费推广 | 本地餐饮商家免费展示入口</title>
-    <meta name="description" content="溧阳本地美食商铺免费推广入口，适合餐馆、小吃、烧烤、奶茶、咖啡、夜宵等商家免费展示门店、活动、菜单和联系方式。">
+    <title>溧阳美食免费推广 | AI美食推荐与探店文案</title>
+    <meta name="description" content="溧阳本地美食商铺免费推广入口，提供AI美食推荐、AI探店文案生成、AI菜单分析，适合餐馆、小吃、烧烤、奶茶、咖啡、夜宵等商家免费展示。">
     <meta property="og:title" content="溧阳美食免费推广">
-    <meta property="og:description" content="溧阳餐饮商家可以免费提交店铺信息，展示门店、招牌菜、活动和联系方式。">
+    <meta property="og:description" content="溧阳餐饮商家可以免费提交店铺信息，也能使用AI美食推荐、探店文案和菜单分析工具。">
     <meta property="og:type" content="website">
     <style>
       :root {
@@ -279,6 +279,7 @@
 
       .grid-3,
       .food-grid,
+      .ai-tools,
       .package-grid,
       .steps {
         display: grid;
@@ -295,6 +296,7 @@
 
       .card,
       .merchant-card,
+      .ai-panel,
       .lead-panel {
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -411,6 +413,54 @@
         font-size: 1.7rem;
       }
 
+      .ai-panel {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 14px;
+        padding: 22px;
+      }
+
+      .ai-panel h3 {
+        margin: 0;
+        font-size: 1.12rem;
+      }
+
+      .ai-field {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .ai-field span {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 850;
+      }
+
+      .compact-fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .ai-output {
+        display: block;
+        min-height: 218px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px;
+        background: #fbfcfa;
+        color: var(--ink);
+        line-height: 1.74;
+        white-space: pre-wrap;
+      }
+
+      .ai-output:empty::before {
+        color: var(--muted);
+        content: attr(data-placeholder);
+      }
+
       .lead-panel {
         padding: 24px;
       }
@@ -435,7 +485,10 @@
 
       .lead-form input,
       .lead-form select,
-      .lead-form textarea {
+      .lead-form textarea,
+      .ai-field input,
+      .ai-field select,
+      .ai-field textarea {
         width: 100%;
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -445,7 +498,8 @@
         outline: none;
       }
 
-      .lead-form textarea {
+      .lead-form textarea,
+      .ai-field textarea {
         resize: vertical;
       }
 
@@ -573,6 +627,7 @@
         .hero-stats,
         .grid-3,
         .grid-2,
+        .ai-tools,
         .package-grid,
         .steps,
         .contact-inner {
@@ -611,11 +666,13 @@
         }
 
         .food-grid,
-        .lead-form {
+        .lead-form,
+        .compact-fields {
           grid-template-columns: 1fr;
         }
 
-        .lead-panel {
+        .lead-panel,
+        .ai-panel {
           padding: 18px;
         }
       }
@@ -630,6 +687,7 @@
       <nav class="nav" aria-label="主导航">
         <a href="#join">免费加入</a>
         <a href="#types">适合商家</a>
+        <a href="#ai">AI助手</a>
         <a href="#packages">免费内容</a>
         <a href="#reply">免费申请</a>
         <a href="#contact">联系</a>
@@ -646,6 +704,7 @@
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#reply">免费提交店铺</a>
+            <a class="button button-secondary" href="#ai">试用AI助手</a>
             <a class="button button-secondary" href="#packages">查看免费内容</a>
             <a class="button button-secondary" href="tel:+8613961109605">电话联系</a>
           </div>
@@ -668,6 +727,95 @@
 
       <section class="status-strip" aria-label="一句话介绍">
         <p>页面上线后，溧阳美食商铺扫码或打开链接即可免费提交信息，审核整理后用于本地美食展示推广。</p>
+      </section>
+
+      <section class="section band" id="ai" aria-labelledby="ai-title">
+        <div class="section-heading">
+          <p class="eyebrow">AI美食助手</p>
+          <h2 id="ai-title">顾客找店、商家写文案、菜单做卖点，都可以在这里生成。</h2>
+          <p>当前页面可直接在浏览器里生成推荐内容，后续收录真实门店后，可以把示例推荐位替换成实际商家。</p>
+        </div>
+        <div class="ai-tools">
+          <form class="ai-panel" id="aiRecommendForm" aria-label="AI美食推荐">
+            <h3>AI美食推荐</h3>
+            <label class="ai-field">
+              <span>用餐需求</span>
+              <textarea id="recommendPrompt" rows="4" placeholder="想吃辣的，预算50元，两个人"></textarea>
+            </label>
+            <div class="compact-fields">
+              <label class="ai-field">
+                <span>人均预算</span>
+                <input id="recommendBudget" type="number" min="0" inputmode="numeric" placeholder="50">
+              </label>
+              <label class="ai-field">
+                <span>用餐人数</span>
+                <select id="recommendPeople">
+                  <option value="">自动判断</option>
+                  <option value="1">1人</option>
+                  <option value="2">2人</option>
+                  <option value="3">3人</option>
+                  <option value="4">4人</option>
+                  <option value="6">6人以上</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="button button-dark" type="submit">生成推荐</button>
+              <button class="button button-outline" type="button" id="copyRecommend">复制推荐</button>
+            </div>
+            <output class="ai-output" id="recommendOutput" data-placeholder="推荐餐厅、适合理由和点单建议会显示在这里。" aria-live="polite"></output>
+            <p class="status-text" id="recommendStatus" aria-live="polite"></p>
+          </form>
+
+          <form class="ai-panel" id="copyForm" aria-label="AI探店文案生成">
+            <h3>AI探店文案生成</h3>
+            <label class="ai-field">
+              <span>店铺和场景</span>
+              <textarea id="copyBrief" rows="4" placeholder="火锅店 + 家庭聚餐"></textarea>
+            </label>
+            <label class="ai-field">
+              <span>文案类型</span>
+              <select id="copyStyle">
+                <option value="both">朋友圈 + 短视频</option>
+                <option value="moments">朋友圈文案</option>
+                <option value="video">短视频文案</option>
+                <option value="xiaohongshu">小红书种草</option>
+              </select>
+            </label>
+            <div class="form-actions">
+              <button class="button button-dark" type="submit">生成文案</button>
+              <button class="button button-outline" type="button" id="copyMarketing">复制文案</button>
+            </div>
+            <output class="ai-output" id="copyOutput" data-placeholder="朋友圈文案、短视频脚本或种草笔记会显示在这里。" aria-live="polite"></output>
+            <p class="status-text" id="copyStatus" aria-live="polite"></p>
+          </form>
+
+          <form class="ai-panel" id="menuForm" aria-label="AI菜单分析">
+            <h3>AI菜单分析</h3>
+            <label class="ai-field">
+              <span>菜品名称</span>
+              <input id="menuDish" type="text" placeholder="例如：麻辣小龙虾">
+            </label>
+            <label class="ai-field">
+              <span>门店类型</span>
+              <select id="menuShopType">
+                <option value="本地餐饮">本地餐饮</option>
+                <option value="本地菜馆">本地菜馆</option>
+                <option value="小吃面馆">小吃面馆</option>
+                <option value="烧烤夜宵">烧烤夜宵</option>
+                <option value="奶茶甜品">奶茶甜品</option>
+                <option value="火锅烤肉">火锅烤肉</option>
+                <option value="咖啡轻食">咖啡轻食</option>
+              </select>
+            </label>
+            <div class="form-actions">
+              <button class="button button-dark" type="submit">分析菜单</button>
+              <button class="button button-outline" type="button" id="copyMenu">复制分析</button>
+            </div>
+            <output class="ai-output" id="menuOutput" data-placeholder="推荐搭配、推荐卖点和宣传文案会显示在这里。" aria-live="polite"></output>
+            <p class="status-text" id="menuStatus" aria-live="polite"></p>
+          </form>
+        </div>
       </section>
 
       <section class="section" id="join" aria-labelledby="join-title">
@@ -910,7 +1058,7 @@
           "免费展示内容：" + goal,
           "方便联系时间：" + time,
           "补充说明：" + note,
-        ].join("\\n");
+        ].join("\n");
       }
 
       function refreshLead() {
@@ -950,6 +1098,313 @@
         copyLead.addEventListener("click", () => {
           refreshLead();
           copyText(leadOutput?.value || buildLeadMessage(), leadStatus, "免费推广申请已复制。");
+        });
+      }
+
+      const restaurantSamples = [
+        {
+          name: "川湘家常菜馆",
+          category: "川湘菜",
+          avg: 48,
+          spice: 3,
+          scenes: ["辣", "下饭", "朋友", "聚餐"],
+          dishes: "辣椒炒肉、剁椒鱼头、干锅花菜",
+          reason: "香辣下饭，点菜灵活，人均50元左右也能吃得比较丰富。",
+        },
+        {
+          name: "热辣火锅烤肉",
+          category: "火锅烤肉",
+          avg: 68,
+          spice: 3,
+          scenes: ["辣", "家庭", "聚餐", "热闹"],
+          dishes: "鸳鸯锅、肥牛拼盘、鲜蔬拼盘、酥肉",
+          reason: "适合多人围坐，口味可辣可不辣，家庭聚餐和朋友局都稳。",
+        },
+        {
+          name: "夜宵烧烤小店",
+          category: "烧烤夜宵",
+          avg: 45,
+          spice: 2,
+          scenes: ["辣", "夜宵", "朋友", "小聚"],
+          dishes: "烤串、烤鱼、花甲、炒粉",
+          reason: "预算友好，点单弹性大，两个人可以按胃口控制总价。",
+        },
+        {
+          name: "老街面馆小吃",
+          category: "小吃面馆",
+          avg: 28,
+          spice: 1,
+          scenes: ["快餐", "省钱", "一人食", "不辣"],
+          dishes: "牛肉面、馄饨、盖浇饭、卤味小菜",
+          reason: "出餐快、价格轻，适合预算较低或临时想简单吃一顿。",
+        },
+        {
+          name: "湖边本地菜馆",
+          category: "本地菜馆",
+          avg: 58,
+          spice: 1,
+          scenes: ["家庭", "清淡", "聚餐", "本地菜"],
+          dishes: "砂锅鱼头、家常小炒、时令蔬菜、老鹅汤",
+          reason: "菜品更照顾老人孩子，适合想吃本地口味和正式聚餐。",
+        },
+        {
+          name: "清和咖啡轻食",
+          category: "咖啡轻食",
+          avg: 42,
+          spice: 0,
+          scenes: ["下午茶", "清淡", "约会", "打卡"],
+          dishes: "拿铁、三明治、沙拉、甜品拼盘",
+          reason: "环境更轻松，适合不想吃太重口或下午小坐。",
+        },
+        {
+          name: "甜巷奶茶甜品",
+          category: "奶茶甜品",
+          avg: 24,
+          spice: 0,
+          scenes: ["甜品", "下午茶", "打卡", "外带"],
+          dishes: "果茶、奶茶、蛋糕、冰粉",
+          reason: "价格轻、适合饭后加一站，也适合年轻人打卡转发。",
+        },
+        {
+          name: "私房家宴预约店",
+          category: "私房菜",
+          avg: 88,
+          spice: 1,
+          scenes: ["家庭", "宴请", "预约", "聚餐"],
+          dishes: "预约家宴、招牌硬菜、汤煲、时令菜",
+          reason: "更适合提前预约和重要聚餐，预算高一点但仪式感更足。",
+        },
+      ];
+
+      function extractBudget(text) {
+        const value = getValue("recommendBudget");
+        if (value) return Number(value);
+        const source = text || "";
+        const explicit = source.match(/(?:预算|人均|每人|一个人)[^\d]{0,8}(\d+)/);
+        const money = source.match(/(\d+)\s*(?:元|块|rmb|RMB)/);
+        return Number((explicit || money || [])[1] || 0) || 60;
+      }
+
+      function extractPeople(text) {
+        const value = getValue("recommendPeople");
+        if (value) return Number(value);
+        const source = text || "";
+        if (/两个人|两人|二人/.test(source)) return 2;
+        if (/一家|家人|家庭|爸妈|孩子/.test(source)) return 4;
+        const people = source.match(/(\d+)\s*(?:人|位|个)/);
+        return Number((people || [])[1] || 0) || 2;
+      }
+
+      function scoreRestaurant(item, prompt, budget, people) {
+        const text = prompt || "";
+        let score = 0;
+        if (item.avg <= budget + 8) score += 4;
+        else if (item.avg <= budget + 22) score += 2;
+        else score -= 2;
+
+        if (/辣|麻辣|重口|川|湘|火锅|冒菜|烤鱼|小龙虾/.test(text)) score += item.spice >= 2 ? 5 : -2;
+        if (/不辣|清淡|老人|孩子|养生/.test(text)) score += item.spice <= 1 ? 4 : -2;
+        if (/家庭|家人|爸妈|孩子|聚餐|请客/.test(text)) score += item.scenes.includes("家庭") || item.scenes.includes("聚餐") ? 4 : 0;
+        if (/夜宵|宵夜|晚上|烧烤|烤串|龙虾/.test(text)) score += item.scenes.includes("夜宵") ? 5 : 0;
+        if (/咖啡|轻食|下午茶|打卡/.test(text)) score += item.category.includes("咖啡") || item.category.includes("奶茶") ? 5 : 0;
+        if (/面|粉|馄饨|快餐|省钱/.test(text)) score += item.category.includes("面馆") ? 5 : 0;
+        if (/火锅|烤肉/.test(text)) score += item.category.includes("火锅") ? 5 : 0;
+        if (people >= 4) score += item.scenes.includes("聚餐") || item.scenes.includes("家庭") ? 2 : -1;
+        return score;
+      }
+
+      function buildRecommendation() {
+        const prompt = getValue("recommendPrompt") || "想吃辣的，预算50元，两个人";
+        const budget = extractBudget(prompt);
+        const people = extractPeople(prompt);
+        const total = budget * people;
+        const ranked = [...restaurantSamples]
+          .map((item) => ({ ...item, score: scoreRestaurant(item, prompt, budget, people) }))
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3);
+
+        const lines = [
+          "按“" + prompt + "”理解：约" + people + "人，人均预算" + budget + "元，总预算约" + total + "元。",
+          "以下是按本地餐饮场景生成的示例推荐，真实入驻商家可替换到这些推荐位。",
+          "",
+        ];
+
+        ranked.forEach((item, index) => {
+          lines.push(
+            index + 1 + ". 推荐餐厅：" + item.name + "｜" + item.category,
+            "推荐菜：" + item.dishes,
+            "理由：" + item.reason,
+            "点单建议：先点1个招牌菜，再配1道素菜或主食，预算更稳。",
+            ""
+          );
+        });
+
+        return lines.join("\n").trim();
+      }
+
+      function buildMarketingCopy() {
+        const brief = getValue("copyBrief") || "火锅店 + 家庭聚餐";
+        const style = getValue("copyStyle") || "both";
+        const parts = brief.split(/[+＋，,、|]/).map((part) => part.trim()).filter(Boolean);
+        const shop = parts[0] || "本地美食店";
+        const scene = parts.slice(1).join(" ") || "朋友小聚";
+        const isHotpot = /火锅|烤肉|锅/.test(shop + scene);
+        const isFamily = /家庭|家人|爸妈|孩子|聚餐/.test(scene);
+        const isNight = /烧烤|夜宵|宵夜|小龙虾/.test(shop + scene);
+        const foodFocus = isHotpot ? "热气、锅底和现涮食材" : isNight ? "烟火气、现烤香味和热闹氛围" : "招牌菜、环境和服务细节";
+        const peopleFocus = isFamily ? "大人孩子都能找到合适口味" : "朋友坐下来就能放松聊天";
+
+        const moments = [
+          "【朋友圈文案】",
+          "今天这顿" + shop + "安排得很舒服。",
+          "最喜欢的是" + foodFocus + "，上桌以后香味很足，" + peopleFocus + "。",
+          scene + "选这里不容易出错，菜品好点、氛围也够热闹。",
+          "下次还想带朋友再来一次。",
+        ].join("\n");
+
+        const video = [
+          "【短视频文案】",
+          "开头3秒：今天带你看一家适合" + scene + "的" + shop + "。",
+          "镜头1：门头、店内环境、上菜瞬间。",
+          "镜头2：特写" + foodFocus + "，配一句“这一口很适合溧阳人的胃”。",
+          "镜头3：拍大家夹菜和聊天，突出" + peopleFocus + "。",
+          "结尾口播：想在溧阳找适合" + scene + "的地方，这家可以先收藏。",
+        ].join("\n");
+
+        const xiaohongshu = [
+          "【小红书种草】",
+          "标题：溧阳" + scene + "可以冲的" + shop,
+          "正文：这家店给我的第一感觉是舒服，" + foodFocus + "都在线。" + peopleFocus + "，适合不想踩雷的时候直接约上。",
+          "推荐点：招牌菜、环境、服务节奏、适合拍照的上桌瞬间。",
+        ].join("\n");
+
+        if (style === "moments") return moments;
+        if (style === "video") return video;
+        if (style === "xiaohongshu") return xiaohongshu;
+        return moments + "\n\n" + video;
+      }
+
+      function getMenuProfile(dish) {
+        const text = dish || "";
+        if (/火锅|锅|毛肚|肥牛|鸭血|冒菜/.test(text)) {
+          return {
+            pairings: ["鲜蔬拼盘", "酥肉或小吃", "冰粉或酸梅汤"],
+            sellingPoints: ["热闹适合聚餐", "荤素选择多", "辣度和锅底可灵活调整"],
+            copy: "一锅热气把氛围拉满，现涮现吃，适合朋友和家人一起围坐。",
+          };
+        }
+        if (/龙虾|虾|鱼|蟹|花甲|蛤|贝/.test(text)) {
+          return {
+            pairings: ["凉拌小菜", "炒饭或拌面", "冰镇饮品"],
+            sellingPoints: ["下酒下饭", "适合夜宵", "味型记忆点强"],
+            copy: "鲜香入味，越吃越有味道，适合夜宵局和朋友小聚。",
+          };
+        }
+        if (/辣|麻|川|湘|水煮|剁椒|酸菜/.test(text)) {
+          return {
+            pairings: ["米饭", "清爽蔬菜", "解辣饮品"],
+            sellingPoints: ["香辣下饭", "出片有食欲", "适合重口味顾客"],
+            copy: "香辣味一上桌就很抓人，配米饭刚好，是店里的下饭担当。",
+          };
+        }
+        if (/烤|串|烧烤|烤肉/.test(text)) {
+          return {
+            pairings: ["凉菜", "炒粉炒饭", "啤酒或果茶"],
+            sellingPoints: ["烟火气足", "点单自由", "适合多人分享"],
+            copy: "现烤香气很有记忆点，边吃边聊，越夜越有氛围。",
+          };
+        }
+        if (/面|粉|馄饨|饺|饭|粥/.test(text)) {
+          return {
+            pairings: ["卤味小菜", "煎蛋", "豆浆或汤品"],
+            sellingPoints: ["出餐快", "性价比高", "适合工作餐和一人食"],
+            copy: "一碗热乎的主食最踏实，价格轻、速度快，日常吃很顺手。",
+          };
+        }
+        if (/奶茶|咖啡|茶|饮|拿铁|果茶/.test(text)) {
+          return {
+            pairings: ["蛋糕", "小甜品", "轻食三明治"],
+            sellingPoints: ["适合外带", "适合打卡", "饭后复购率高"],
+            copy: "清爽好入口，饭后来一杯刚刚好，也适合拍照分享。",
+          };
+        }
+        if (/甜|蛋糕|冰粉|布丁|芋圆|豆花/.test(text)) {
+          return {
+            pairings: ["果茶", "咖啡", "小份咸口小吃"],
+            sellingPoints: ["颜值高", "适合饭后", "适合年轻顾客打卡"],
+            copy: "甜度和颜值都在线，适合饭后来一份，也适合朋友圈晒图。",
+          };
+        }
+        return {
+          pairings: ["时令蔬菜", "主食", "招牌饮品"],
+          sellingPoints: ["适合本地口味", "容易做成招牌推荐", "适合搭配套餐"],
+          copy: "把这道菜放在招牌位，重点突出新鲜、份量和适合场景，更容易让顾客下单。",
+        };
+      }
+
+      function buildMenuAnalysis() {
+        const dish = getValue("menuDish") || "招牌菜";
+        const shopType = getValue("menuShopType") || "本地餐饮";
+        const profile = getMenuProfile(dish);
+
+        return [
+          "菜品：" + dish + "｜" + shopType,
+          "",
+          "推荐搭配：",
+          "- " + profile.pairings.join("\n- "),
+          "",
+          "推荐卖点：",
+          "- " + profile.sellingPoints.join("\n- "),
+          "",
+          "推荐宣传文案：",
+          profile.copy,
+        ].join("\n");
+      }
+
+      function bindGenerator(formId, outputId, statusId, builder) {
+        const form = document.querySelector("#" + formId);
+        const output = document.querySelector("#" + outputId);
+        const status = document.querySelector("#" + statusId);
+        if (!form || !output) return null;
+
+        const render = () => {
+          output.textContent = builder();
+          if (status) status.textContent = "已生成，可以复制使用。";
+        };
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          render();
+        });
+
+        return { output, status, render };
+      }
+
+      const recommendGenerator = bindGenerator("aiRecommendForm", "recommendOutput", "recommendStatus", buildRecommendation);
+      const copyGenerator = bindGenerator("copyForm", "copyOutput", "copyStatus", buildMarketingCopy);
+      const menuGenerator = bindGenerator("menuForm", "menuOutput", "menuStatus", buildMenuAnalysis);
+
+      const copyRecommend = document.querySelector("#copyRecommend");
+      if (copyRecommend) {
+        copyRecommend.addEventListener("click", () => {
+          if (recommendGenerator && !recommendGenerator.output.textContent) recommendGenerator.render();
+          copyText(recommendGenerator?.output.textContent || buildRecommendation(), recommendGenerator?.status, "推荐内容已复制。");
+        });
+      }
+
+      const copyMarketing = document.querySelector("#copyMarketing");
+      if (copyMarketing) {
+        copyMarketing.addEventListener("click", () => {
+          if (copyGenerator && !copyGenerator.output.textContent) copyGenerator.render();
+          copyText(copyGenerator?.output.textContent || buildMarketingCopy(), copyGenerator?.status, "探店文案已复制。");
+        });
+      }
+
+      const copyMenu = document.querySelector("#copyMenu");
+      if (copyMenu) {
+        copyMenu.addEventListener("click", () => {
+          if (menuGenerator && !menuGenerator.output.textContent) menuGenerator.render();
+          copyText(menuGenerator?.output.textContent || buildMenuAnalysis(), menuGenerator?.status, "菜单分析已复制。");
         });
       }
 
