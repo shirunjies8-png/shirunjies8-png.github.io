@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>溧阳美食免费推广 | AI美食推荐与探店文案</title>
-    <meta name="description" content="溧阳本地美食商铺免费推广入口，提供AI美食推荐、AI探店文案生成、AI菜单分析，适合餐馆、小吃、烧烤、奶茶、咖啡、夜宵等商家免费展示。">
+    <title>溧阳美食免费推广 | AI美食推荐与商户公示工具</title>
+    <meta name="description" content="溧阳本地美食商铺免费推广入口，提供AI美食推荐、门店介绍生成、AI菜单分析和商家入驻规则，适合餐馆、小吃、烧烤、奶茶、咖啡、夜宵等商家免费展示。">
     <meta property="og:title" content="溧阳美食免费推广">
-    <meta property="og:description" content="溧阳餐饮商家可以免费提交店铺信息，也能使用AI美食推荐、探店文案和菜单分析工具。">
+    <meta property="og:description" content="溧阳餐饮商家可以免费提交店铺信息，也能使用AI美食推荐、门店介绍和菜单分析工具。">
     <meta property="og:type" content="website">
     <style>
       :root {
@@ -689,6 +689,7 @@
         <a href="#types">适合商家</a>
         <a href="#ai">AI助手</a>
         <a href="#packages">免费内容</a>
+        <a href="#rules">入驻规则</a>
         <a href="#reply">免费申请</a>
         <a href="#contact">联系</a>
       </nav>
@@ -732,8 +733,8 @@
       <section class="section band" id="ai" aria-labelledby="ai-title">
         <div class="section-heading">
           <p class="eyebrow">AI美食助手</p>
-          <h2 id="ai-title">顾客找店、商家写文案、菜单做卖点，都可以在这里生成。</h2>
-          <p>当前页面可直接在浏览器里生成推荐内容，后续收录真实门店后，可以把示例推荐位替换成实际商家。</p>
+          <h2 id="ai-title">顾客找店、商家写门店说明、菜单做卖点，都可以在这里生成。</h2>
+          <p>当前页面可直接在浏览器里生成参考内容，输出以客观介绍、菜品特点和合规活动公示为主，后续收录真实门店后可替换为实际商家信息。</p>
         </div>
         <div class="ai-tools">
           <form class="ai-panel" id="aiRecommendForm" aria-label="AI美食推荐">
@@ -767,26 +768,26 @@
             <p class="status-text" id="recommendStatus" aria-live="polite"></p>
           </form>
 
-          <form class="ai-panel" id="copyForm" aria-label="AI探店文案生成">
-            <h3>AI探店文案生成</h3>
+          <form class="ai-panel" id="copyForm" aria-label="AI门店介绍生成">
+            <h3>AI门店介绍生成</h3>
             <label class="ai-field">
               <span>店铺和场景</span>
-              <textarea id="copyBrief" rows="4" placeholder="火锅店 + 家庭聚餐"></textarea>
+              <textarea id="copyBrief" rows="4" placeholder="本地菜馆 + 家庭聚餐"></textarea>
             </label>
             <label class="ai-field">
-              <span>文案类型</span>
+              <span>说明类型</span>
               <select id="copyStyle">
-                <option value="both">朋友圈 + 短视频</option>
-                <option value="moments">朋友圈文案</option>
-                <option value="video">短视频文案</option>
-                <option value="xiaohongshu">小红书种草</option>
+                <option value="summary">门店基础介绍</option>
+                <option value="dish">菜品特点说明</option>
+                <option value="activity">优惠活动公示</option>
+                <option value="full">合规综合说明</option>
               </select>
             </label>
             <div class="form-actions">
-              <button class="button button-dark" type="submit">生成文案</button>
-              <button class="button button-outline" type="button" id="copyMarketing">复制文案</button>
+              <button class="button button-dark" type="submit">生成说明</button>
+              <button class="button button-outline" type="button" id="copyMarketing">复制说明</button>
             </div>
-            <output class="ai-output" id="copyOutput" data-placeholder="朋友圈文案、短视频脚本或种草笔记会显示在这里。" aria-live="polite"></output>
+            <output class="ai-output" id="copyOutput" data-placeholder="客观门店介绍、菜品特点说明或活动公示内容会显示在这里。" aria-live="polite"></output>
             <p class="status-text" id="copyStatus" aria-live="polite"></p>
           </form>
 
@@ -812,7 +813,7 @@
               <button class="button button-dark" type="submit">分析菜单</button>
               <button class="button button-outline" type="button" id="copyMenu">复制分析</button>
             </div>
-            <output class="ai-output" id="menuOutput" data-placeholder="推荐搭配、推荐卖点和宣传文案会显示在这里。" aria-live="polite"></output>
+            <output class="ai-output" id="menuOutput" data-placeholder="推荐搭配、菜品特点和合规展示文案会显示在这里。" aria-live="polite"></output>
             <p class="status-text" id="menuStatus" aria-live="polite"></p>
           </form>
         </div>
@@ -883,8 +884,8 @@
             <div class="merchant-media" aria-hidden="true"></div>
             <div class="merchant-body">
               <h3>免费美食合集</h3>
-              <p>适合做“溧阳夜宵推荐”“溧阳面馆合集”“溧阳周末聚餐”等主题榜单。</p>
-              <div class="tag-row"><span class="tag">合集</span><span class="tag">榜单</span><span class="tag">本地流量</span></div>
+              <p>适合按餐饮品类、商圈、营业场景整理成便民分类信息，方便顾客查找。</p>
+              <div class="tag-row"><span class="tag">分类</span><span class="tag">便民</span><span class="tag">公示</span></div>
             </div>
           </article>
         </div>
@@ -907,9 +908,9 @@
             <div class="price"><strong>包含</strong><span>新品和优惠信息</span></div>
           </article>
           <article class="card">
-            <h3>免费合集推荐</h3>
-            <p>按品类或商圈整理成“溧阳美食推荐”合集，让顾客更容易比较和联系。</p>
-            <div class="price"><strong>包含</strong><span>本地美食分类收录</span></div>
+            <h3>免费分类公示</h3>
+            <p>按品类或商圈整理成本地餐饮信息，便于顾客查询、比较和联系。</p>
+            <div class="price"><strong>包含</strong><span>本地餐饮分类收录</span></div>
           </article>
         </div>
       </section>
@@ -920,17 +921,42 @@
           <h2 id="steps-title">商家提交后可以这样推进。</h2>
         </div>
         <div class="steps">
-          <article class="card"><strong>01</strong><h3>提交信息</h3><p>商家填写店名、品类、地址、电话和想展示的内容。</p></article>
-          <article class="card"><strong>02</strong><h3>整理信息</h3><p>把门店资料、菜单、活动和图片整理成清楚的免费展示内容。</p></article>
-          <article class="card"><strong>03</strong><h3>上线转发</h3><p>上传到网上后，商家可以把链接发到朋友圈、群聊或贴到门店二维码。</p></article>
+          <article class="card"><strong>01</strong><h3>提交信息</h3><p>商家填写店名、品类、地址、电话和想展示的基础内容。</p></article>
+          <article class="card"><strong>02</strong><h3>整理审核</h3><p>把门店资料、菜单、合规活动和图片整理成清楚的免费展示内容。</p></article>
+          <article class="card"><strong>03</strong><h3>上线公示</h3><p>上传到网上后，商家可以把链接用于门店二维码、顾客查询和基础信息公示。</p></article>
+        </div>
+      </section>
+
+      <section class="section band" id="rules" aria-labelledby="rules-title">
+        <div class="section-heading">
+          <p class="eyebrow">商家入驻须知</p>
+          <h2 id="rules-title">仅面向溧阳本地餐饮商户开放基础信息公示。</h2>
+          <p>本平台仅提供溧阳本地餐饮商户基础信息、招牌菜、合规优惠活动的公益展示，不开放第三方探店博主的投稿、达人推广合作、商单置换类内容入口，不承接任何探店联动任务。后续商家提交资料时，但凡夹带邀约探店、达人合作的内容，审核环节直接剔除，从源头划定边界。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <strong>开放范围</strong>
+            <h3>餐饮商户基础资料</h3>
+            <p>店名、地址、电话、营业时间、经营品类、招牌菜、门店图片和合规优惠活动。</p>
+          </article>
+          <article class="card">
+            <strong>不开放范围</strong>
+            <h3>非商户合作内容</h3>
+            <p>不接收第三方探店博主投稿、达人推广、商单置换、邀约探店和任何联动任务。</p>
+          </article>
+          <article class="card">
+            <strong>审核边界</strong>
+            <h3>夹带合作直接剔除</h3>
+            <p>资料中如出现邀约探店、达人合作或夸大营销内容，将在审核环节剔除。</p>
+          </article>
         </div>
       </section>
 
       <section class="section band" id="reply" aria-labelledby="reply-title">
         <div class="section-heading">
-          <p class="eyebrow">免费申请</p>
-          <h2 id="reply-title">留下店铺信息，免费加入溧阳美食展示。</h2>
-          <p>填写后点击“发送免费推广申请”，会自动打开邮箱并生成一封给你的邮件。这样即使网站没有后台，也能让对方把店铺信息发到你的邮箱。</p>
+          <p class="eyebrow">商家免费申请</p>
+          <h2 id="reply-title">仅餐饮商家可提交资料，免费加入溧阳美食展示。</h2>
+          <p>填写后点击“发送免费推广申请”，会自动打开邮箱并生成一封给你的邮件。提交内容仅限门店基础信息、招牌菜和合规优惠活动，不接收任何第三方推广合作内容。</p>
         </div>
         <div class="grid-2">
           <form class="lead-panel lead-form" id="leadForm" aria-label="商家免费推广申请表单">
@@ -964,7 +990,7 @@
                 <option value="门店展示">门店展示</option>
                 <option value="新品展示">新品展示</option>
                 <option value="套餐活动">套餐活动</option>
-                <option value="加入美食合集">加入美食合集</option>
+                <option value="加入分类公示">加入分类公示</option>
                 <option value="外卖自取">外卖自取</option>
               </select>
             </label>
@@ -974,7 +1000,7 @@
             </label>
             <label class="full-field">
               <span>补充说明</span>
-              <textarea id="shopNote" name="shopNote" rows="4" placeholder="例如：想展示招牌菜、开业活动、团购套餐、需要拍菜单照片"></textarea>
+              <textarea id="shopNote" name="shopNote" rows="4" placeholder="例如：想展示招牌菜、合规活动、门店照片。请勿填写邀约探店、达人合作、商单置换等内容。"></textarea>
             </label>
             <div class="form-actions">
               <button class="button button-dark" type="submit">发送免费推广申请</button>
@@ -999,7 +1025,7 @@
           <div>
             <p class="eyebrow">联系免费收录</p>
             <h2 id="contact-title">溧阳美食商铺想免费展示，可以从这里开始。</h2>
-            <p>我会先帮你把店铺信息整理成清楚内容，后面可以继续做菜单、活动、合集和二维码推广入口。</p>
+            <p>我会先帮你把店铺信息整理成清楚内容，后面可以继续做菜单、合规活动、分类公示和二维码公示入口。</p>
           </div>
           <div class="contact-box">
             <a href="tel:+8613961109605">电话：139 6110 9605</a>
@@ -1017,6 +1043,8 @@
         <div class="footer-note" aria-label="网站说明">
           <p>本网站为个人公益项目，旨在推广溧阳美食文化。</p>
           <p>不收取商户入驻费、推广费或其他费用。</p>
+          <p>所有展示信息将由主管单位核验经营资质、宣传话术，杜绝夸大营销。</p>
+          <p>平台仅作餐饮商户基础信息公示，不设置达人、探店合作或商单置换入口。</p>
           <p>如信息有误或商户希望修改/删除信息，请联系站长。</p>
         </div>
       </div>
@@ -1058,6 +1086,7 @@
           "免费展示内容：" + goal,
           "方便联系时间：" + time,
           "补充说明：" + note,
+          "入驻规则确认：本次提交仅包含餐饮商户基础信息、招牌菜或合规优惠活动，不夹带邀约探店、达人合作、商单置换等内容。",
         ].join("\n");
       }
 
@@ -1243,45 +1272,47 @@
       }
 
       function buildMarketingCopy() {
-        const brief = getValue("copyBrief") || "火锅店 + 家庭聚餐";
-        const style = getValue("copyStyle") || "both";
+        const brief = getValue("copyBrief") || "本地菜馆 + 家庭聚餐";
+        const style = getValue("copyStyle") || "summary";
         const parts = brief.split(/[+＋，,、|]/).map((part) => part.trim()).filter(Boolean);
-        const shop = parts[0] || "本地美食店";
-        const scene = parts.slice(1).join(" ") || "朋友小聚";
+        const shop = parts[0] || "本地餐饮商户";
+        const scene = parts.slice(1).join(" ") || "日常用餐";
         const isHotpot = /火锅|烤肉|锅/.test(shop + scene);
         const isFamily = /家庭|家人|爸妈|孩子|聚餐/.test(scene);
         const isNight = /烧烤|夜宵|宵夜|小龙虾/.test(shop + scene);
-        const foodFocus = isHotpot ? "热气、锅底和现涮食材" : isNight ? "烟火气、现烤香味和热闹氛围" : "招牌菜、环境和服务细节";
-        const peopleFocus = isFamily ? "大人孩子都能找到合适口味" : "朋友坐下来就能放松聊天";
+        const foodFocus = isHotpot ? "锅底选择、荤素搭配和食材新鲜度" : isNight ? "出餐时间、口味稳定性和夜间用餐便利性" : "招牌菜、门店环境和服务信息";
+        const peopleFocus = isFamily ? "家庭成员口味差异、用餐空间和点餐搭配" : "日常用餐需求、价格区间和门店位置";
 
-        const moments = [
-          "【朋友圈文案】",
-          "今天这顿" + shop + "安排得很舒服。",
-          "最喜欢的是" + foodFocus + "，上桌以后香味很足，" + peopleFocus + "。",
-          scene + "选这里不容易出错，菜品好点、氛围也够热闹。",
-          "下次还想带朋友再来一次。",
+        const summary = [
+          "【门店基础介绍】",
+          "门店类型：" + shop,
+          "适用场景：" + scene,
+          "客观说明：该商户可重点公示门店地址、营业时间、联系方式、经营品类和基础服务信息。",
+          "展示重点：" + foodFocus + "。",
+          "使用边界：内容用于餐饮商户基础信息公示，不作为达人合作、商单置换或夸张营销话术。",
         ].join("\n");
 
-        const video = [
-          "【短视频文案】",
-          "开头3秒：今天带你看一家适合" + scene + "的" + shop + "。",
-          "镜头1：门头、店内环境、上菜瞬间。",
-          "镜头2：特写" + foodFocus + "，配一句“这一口很适合溧阳人的胃”。",
-          "镜头3：拍大家夹菜和聊天，突出" + peopleFocus + "。",
-          "结尾口播：想在溧阳找适合" + scene + "的地方，这家可以先收藏。",
+        const dish = [
+          "【菜品特点说明】",
+          "说明对象：" + shop,
+          "菜品方向：" + foodFocus,
+          "建议写法：说明主要食材、口味特点、适合人数、参考搭配和注意事项。",
+          "适用人群：" + peopleFocus + "。",
+          "合规提示：避免使用绝对化、夸大化表达，价格、份量和活动以商家实际公示为准。",
         ].join("\n");
 
-        const xiaohongshu = [
-          "【小红书种草】",
-          "标题：溧阳" + scene + "可以冲的" + shop,
-          "正文：这家店给我的第一感觉是舒服，" + foodFocus + "都在线。" + peopleFocus + "，适合不想踩雷的时候直接约上。",
-          "推荐点：招牌菜、环境、服务节奏、适合拍照的上桌瞬间。",
+        const activity = [
+          "【优惠活动公示】",
+          "活动对象：" + shop,
+          "适用场景：" + scene,
+          "公示内容：活动名称、有效时间、适用菜品、参与条件、核销方式和商家联系方式。",
+          "审核要求：仅展示合规优惠活动，不使用诱导性承诺，不夹带第三方推广合作信息。",
         ].join("\n");
 
-        if (style === "moments") return moments;
-        if (style === "video") return video;
-        if (style === "xiaohongshu") return xiaohongshu;
-        return moments + "\n\n" + video;
+        if (style === "dish") return dish;
+        if (style === "activity") return activity;
+        if (style === "full") return summary + "\n\n" + dish + "\n\n" + activity;
+        return summary;
       }
 
       function getMenuProfile(dish) {
@@ -1289,29 +1320,29 @@
         if (/火锅|锅|毛肚|肥牛|鸭血|冒菜/.test(text)) {
           return {
             pairings: ["鲜蔬拼盘", "酥肉或小吃", "冰粉或酸梅汤"],
-            sellingPoints: ["热闹适合聚餐", "荤素选择多", "辣度和锅底可灵活调整"],
-            copy: "一锅热气把氛围拉满，现涮现吃，适合朋友和家人一起围坐。",
+            sellingPoints: ["适合多人用餐", "荤素选择较多", "辣度和锅底可灵活调整"],
+            copy: "可客观说明锅底类型、食材搭配、适合人数和辣度选择，便于顾客按需求点餐。",
           };
         }
         if (/龙虾|虾|鱼|蟹|花甲|蛤|贝/.test(text)) {
           return {
             pairings: ["凉拌小菜", "炒饭或拌面", "冰镇饮品"],
-            sellingPoints: ["下酒下饭", "适合夜宵", "味型记忆点强"],
-            copy: "鲜香入味，越吃越有味道，适合夜宵局和朋友小聚。",
+            sellingPoints: ["适合夜间用餐", "可搭配主食", "口味特点清晰"],
+            copy: "可说明主要食材、口味类型、份量参考和适用时段，活动价格以商家公示为准。",
           };
         }
         if (/辣|麻|川|湘|水煮|剁椒|酸菜/.test(text)) {
           return {
             pairings: ["米饭", "清爽蔬菜", "解辣饮品"],
-            sellingPoints: ["香辣下饭", "出片有食欲", "适合重口味顾客"],
-            copy: "香辣味一上桌就很抓人，配米饭刚好，是店里的下饭担当。",
+            sellingPoints: ["口味偏香辣", "适合搭配主食", "适合重口味顾客"],
+            copy: "可客观说明辣度、主要调味、推荐搭配和不适宜人群，避免使用绝对化推荐。",
           };
         }
         if (/烤|串|烧烤|烤肉/.test(text)) {
           return {
             pairings: ["凉菜", "炒粉炒饭", "啤酒或果茶"],
-            sellingPoints: ["烟火气足", "点单自由", "适合多人分享"],
-            copy: "现烤香气很有记忆点，边吃边聊，越夜越有氛围。",
+            sellingPoints: ["适合多人分食", "单品选择较灵活", "适合晚间用餐"],
+            copy: "可说明出餐方式、主要口味、适合人数和参考搭配，避免夸大消费体验。",
           };
         }
         if (/面|粉|馄饨|饺|饭|粥/.test(text)) {
@@ -1324,21 +1355,21 @@
         if (/奶茶|咖啡|茶|饮|拿铁|果茶/.test(text)) {
           return {
             pairings: ["蛋糕", "小甜品", "轻食三明治"],
-            sellingPoints: ["适合外带", "适合打卡", "饭后复购率高"],
-            copy: "清爽好入口，饭后来一杯刚刚好，也适合拍照分享。",
+            sellingPoints: ["适合外带", "可搭配甜品", "适合饭后饮用"],
+            copy: "可说明甜度、冷热选择、规格和搭配建议，具体口味以门店实际制作为准。",
           };
         }
         if (/甜|蛋糕|冰粉|布丁|芋圆|豆花/.test(text)) {
           return {
             pairings: ["果茶", "咖啡", "小份咸口小吃"],
-            sellingPoints: ["颜值高", "适合饭后", "适合年轻顾客打卡"],
-            copy: "甜度和颜值都在线，适合饭后来一份，也适合朋友圈晒图。",
+            sellingPoints: ["适合饭后", "可搭配饮品", "甜度和规格可说明"],
+            copy: "可说明主要原料、甜度、规格和保存方式，展示内容以实际供应为准。",
           };
         }
         return {
           pairings: ["时令蔬菜", "主食", "招牌饮品"],
-          sellingPoints: ["适合本地口味", "容易做成招牌推荐", "适合搭配套餐"],
-          copy: "把这道菜放在招牌位，重点突出新鲜、份量和适合场景，更容易让顾客下单。",
+          sellingPoints: ["适合本地口味", "可作为招牌菜公示", "适合搭配套餐"],
+          copy: "可重点说明食材、份量、口味、适用场景和价格条件，内容以商家真实公示为准。",
         };
       }
 
@@ -1353,10 +1384,10 @@
           "推荐搭配：",
           "- " + profile.pairings.join("\n- "),
           "",
-          "推荐卖点：",
+          "菜品特点：",
           "- " + profile.sellingPoints.join("\n- "),
           "",
-          "推荐宣传文案：",
+          "合规展示文案：",
           profile.copy,
         ].join("\n");
       }
@@ -1396,7 +1427,7 @@
       if (copyMarketing) {
         copyMarketing.addEventListener("click", () => {
           if (copyGenerator && !copyGenerator.output.textContent) copyGenerator.render();
-          copyText(copyGenerator?.output.textContent || buildMarketingCopy(), copyGenerator?.status, "探店文案已复制。");
+          copyText(copyGenerator?.output.textContent || buildMarketingCopy(), copyGenerator?.status, "门店说明已复制。");
         });
       }
 
