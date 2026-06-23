@@ -301,6 +301,12 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.grid-5 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .card {
   padding: 22px;
   border: 1px solid var(--line);
@@ -541,6 +547,56 @@ select:focus {
   color: var(--muted);
 }
 
+.ai-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.ai-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ai-output {
+  min-height: 180px;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.ai-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--soft-green);
+  color: var(--green-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.code-box {
+  padding: 16px;
+  border-radius: 8px;
+  background: #0f1d1b;
+  color: #dff3ee;
+  overflow: auto;
+  line-height: 1.75;
+}
+
 .footer {
   padding: 28px 0 42px;
   color: var(--muted);
@@ -577,6 +633,7 @@ select:focus {
   .grid-2,
   .grid-3,
   .grid-4,
+  .grid-5,
   .gallery,
   .admin-layout {
     grid-template-columns: 1fr;

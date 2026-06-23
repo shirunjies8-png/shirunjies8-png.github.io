@@ -24,7 +24,7 @@
       <div class="wrap">
         <p class="eyebrow">后台入口 /admin.html</p>
         <h1 style="font-size: clamp(34px, 5vw, 54px);">企业后台演示</h1>
-        <p class="lead">当前阶段先做前端演示，不接真实数据库。点击保存后使用 localStorage 保存到当前浏览器。</p>
+        <p class="lead">当前阶段先做前端演示，不接真实数据库。点击保存后使用 localStorage 保存到当前浏览器，AI 按钮先展示“假AI”结果，后续可接 DeepSeek。</p>
 
         <div class="admin-layout" style="margin-top: 24px;">
           <form class="panel card form" data-admin-form>
@@ -58,6 +58,73 @@
         </div>
       </div>
     </main>
+
+    <section class="section band">
+      <div class="wrap ai-grid" data-ai-workbench>
+        <div class="panel card ai-shell">
+          <p class="eyebrow">AI生成区</p>
+          <h2>AI企业简介、AI产品介绍、AI推广文案、AI客户分析、AI接单建议</h2>
+          <div class="form-grid">
+            <label>企业名称<input name="enterprise" value="溧企AI示例工厂" /></label>
+            <label>主营业务<input name="business" value="制造加工" /></label>
+            <label>产品/服务<input name="products" value="CNC加工、钣金焊接、来图报价" /></label>
+            <label>联系方式<input name="contact" value="微信、电话、邮箱" /></label>
+            <label>客户名称<input name="customer" value="张先生" /></label>
+            <label>客户需求<input name="demand" value="来图加工、询价、打样" /></label>
+            <label>预算<input name="budget" value="预算待确认" /></label>
+            <label>风险提示<input name="risk" value="交期、工艺、账期" /></label>
+          </div>
+          <div class="ai-toolbar">
+            <button class="btn primary" type="button" data-ai-action="intro">AI企业简介</button>
+            <button class="btn primary" type="button" data-ai-action="product">AI产品介绍</button>
+            <button class="btn primary" type="button" data-ai-action="promote">AI推广文案</button>
+            <button class="btn primary" type="button" data-ai-action="analysis">AI客户分析</button>
+            <button class="btn primary" type="button" data-ai-action="advice">AI接单建议</button>
+            <button class="btn outline" type="button" data-ai-action="find">AI找客户</button>
+            <button class="btn outline" type="button" data-ai-action="follow">AI跟进提醒</button>
+          </div>
+        </div>
+        <div class="panel card ai-stack">
+          <div>
+            <span class="badge-pill">DeepSeek 接入预留</span>
+            <p class="muted">后端接入时再把 API Key 放到服务器环境变量，不放前端。</p>
+          </div>
+          <div class="code-box">POST /api/ai
+{
+  "model": "deepseek-chat",
+  "prompt": "请生成企业简介"
+}</div>
+          <article class="card">
+            <h3>AI企业简介</h3>
+            <div class="ai-output" data-ai-output="intro">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI产品介绍</h3>
+            <div class="ai-output" data-ai-output="product">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI推广文案</h3>
+            <div class="ai-output" data-ai-output="promote">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI客户分析</h3>
+            <div class="ai-output" data-ai-output="analysis">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI接单建议</h3>
+            <div class="ai-output" data-ai-output="advice">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI找客户</h3>
+            <div class="ai-output" data-ai-output="find">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>AI跟进提醒</h3>
+            <div class="ai-output" data-ai-output="follow">点击按钮生成内容。</div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="section band">
       <div class="wrap">

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>溧企AI - 专门给溧阳小工厂做官网和获客页面</title>
-    <meta name="description" content="溧企AI专门给溧阳小工厂做官网和获客页面，帮助老板展示产品、设备、案例和联系方式，支持来图报价和免费生成企业演示版。" />
+    <title>溧企AI - AI企业官网、获客、接单、自动运营系统</title>
+    <meta name="description" content="溧企AI是一套面向溧阳中小企业的AI企业官网、AI获客、AI接单和自动运营系统，支持演示版、询盘系统和DeepSeek接入预留。" />
     <meta name="robots" content="index, follow" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -13,9 +13,10 @@
       <div class="wrap topbar-inner">
         <a class="brand" href="index.html">
           <span class="brand-mark">溧</span>
-          <span>溧企AI<small>给溧阳小工厂做官网和获客页面</small></span>
+          <span>溧企AI<small>AI企业官网、获客、接单、自动运营系统</small></span>
         </a>
         <nav class="nav" aria-label="主导航">
+          <a href="#aiStudio">AI生成官网</a>
           <a href="#cases">案例</a>
           <a href="#quote">来图报价</a>
           <a href="#admin">后台演示</a>
@@ -28,12 +29,12 @@
       <section class="hero">
         <div class="wrap hero-grid">
           <div class="panel hero-main">
-            <p class="eyebrow">免费生成企业演示版</p>
+            <p class="eyebrow">AI + 公网 + DeepSeek 接入方案</p>
             <h1>溧企AI</h1>
-            <p class="lead">专门给溧阳小工厂做官网和获客页面。不会写文案、不懂建网站，也能 10 分钟生成企业官网、产品介绍、报价沟通页面。</p>
-            <p class="lead">老板只要提供企业名称、产品照片、设备照片、联系方式，我们帮你生成企业介绍、产品页面、报价沟通页和微信联系页。</p>
+            <p class="lead">溧企AI = AI企业官网 + AI获客系统 + AI接单助手 + AI自动运营系统。不会写文案、不懂建网站，也能 10 分钟生成企业官网、产品介绍、报价沟通页面。</p>
+            <p class="lead">老板只要提供企业名称、主营业务、产品/服务和联系方式，我们先用“假AI”演示，后续可接 DeepSeek 真 AI。</p>
             <div class="button-row">
-              <a class="btn primary" href="#freeTrial">免费生成我的工厂官网</a>
+              <a class="btn primary" href="#aiStudio">AI生成官网</a>
               <a class="btn orange" href="#quote">发企业资料，免费做演示版</a>
               <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
             </div>
@@ -53,6 +54,70 @@
               <p>发布后可复制链接发给老板、客户，也可以放到微信、朋友圈、抖音企业主页和企业二维码名片里。</p>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section band" id="aiStudio">
+        <div class="wrap">
+          <div class="ai-grid" data-ai-workbench>
+            <div class="panel card ai-shell">
+              <p class="eyebrow">AI生成官网 / AI内容生成 / AI接单建议</p>
+              <h2>先用“假AI”演示，按钮仍然叫 AI 生成</h2>
+              <div class="form-grid">
+                <label>企业名称<input name="enterprise" value="溧企AI示例工厂" /></label>
+                <label>主营业务<input name="business" value="制造加工" /></label>
+                <label>产品/服务<input name="products" value="CNC加工、钣金焊接、来图报价" /></label>
+                <label>联系方式<input name="contact" value="微信、电话、邮箱" /></label>
+                <label>客户名称<input name="customer" value="张先生" /></label>
+                <label>客户需求<input name="demand" value="来图加工、询价、打样" /></label>
+                <label>预算<input name="budget" value="预算待确认" /></label>
+                <label>风险提示<input name="risk" value="交期、工艺、账期" /></label>
+              </div>
+              <div class="ai-toolbar">
+                <button class="btn primary" type="button" data-ai-action="intro">AI企业简介</button>
+                <button class="btn primary" type="button" data-ai-action="product">AI产品介绍</button>
+                <button class="btn primary" type="button" data-ai-action="promote">AI推广文案</button>
+              <button class="btn primary" type="button" data-ai-action="analysis">AI客户分析</button>
+              <button class="btn primary" type="button" data-ai-action="advice">AI接单建议</button>
+              <button class="btn outline" type="button" data-ai-action="find">AI找客户</button>
+              <button class="btn outline" type="button" data-ai-action="follow">AI跟进提醒</button>
+              <button class="btn outline" type="button" data-ai-action="plan">AI自动运营</button>
+              <button class="btn outline" type="button" data-ai-action="video15">15秒脚本</button>
+              <button class="btn outline" type="button" data-ai-action="video30">30秒脚本</button>
+            </div>
+            </div>
+            <div class="panel card ai-stack">
+              <div>
+                <span class="badge-pill">DeepSeek 接入预留</span>
+                <p class="muted">前端按钮先演示，后端再接 `https://api.deepseek.com/v1/chat/completions`，API Key 放后端，不放前端。</p>
+              </div>
+              <div class="code-box">模型：deepseek-chat
+入口：前端按钮 → 后端接口 → DeepSeek API → 返回结果
+
+示例 Prompt：
+企业简介：你是制造企业营销专家，请生成企业简介
+产品介绍：请生成客户能看懂的产品介绍
+接单建议：请判断是否建议接单并说明原因</div>
+              <div class="ai-stack">
+                <article class="card">
+                  <h3>AI企业简介</h3>
+                  <div class="ai-output" data-ai-output="intro">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI接单建议</h3>
+                  <div class="ai-output" data-ai-output="advice">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI找客户</h3>
+                  <div class="ai-output" data-ai-output="find">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI跟进提醒</h3>
+                  <div class="ai-output" data-ai-output="follow">点击按钮生成内容。</div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -126,7 +191,7 @@
           <div>
             <p class="eyebrow">免费体验版</p>
             <h2>免费生成企业演示版</h2>
-            <p class="lead">仅需提供：企业名称、主营产品、设备照片、联系电话，然后生成一个可转发的公网链接。</p>
+            <p class="lead">仅需提供：企业名称、主营产品、设备照片、联系电话，然后生成一个可转发的公网链接。按钮仍然写 AI 生成，先演示，后接真实 AI。</p>
             <ul class="check-list">
               <li>支持微信打开和转发</li>
               <li>支持手机扫码访问</li>
@@ -176,7 +241,7 @@
           <div>
             <p class="eyebrow">企业后台演示</p>
             <h2>老板可以自己改电话、微信、产品和设备</h2>
-            <p class="lead">先使用浏览器 localStorage 保存演示数据，后续再接真实后台和数据库。</p>
+            <p class="lead">先使用浏览器 localStorage 保存演示数据，后续再接真实后台和数据库。后台将来可以继续扩展 AI 企业简介、AI产品介绍、AI客户分析和 AI接单建议。</p>
             <div class="button-row">
               <a class="btn primary" href="admin.html">打开企业后台</a>
               <button class="btn outline" type="button" data-copy-wechat>微信咨询</button>
