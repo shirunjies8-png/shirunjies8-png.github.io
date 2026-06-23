@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>不锈钢加工厂演示 - 溧企AI</title>
+    <meta name="description" content="溧企AI不锈钢加工厂演示页，展示不锈钢零部件 CNC 加工、设备能力、案例和来图报价。" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="../index.html"><span class="brand-mark">溧</span><span>溧企AI<small>不锈钢加工厂演示页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="#case">案例</a>
+          <a href="#quote">报价</a>
+          <a href="../admin.html">后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">老板视角案例</p>
+            <h1>溧阳五四不锈钢</h1>
+            <p class="lead">主营：不锈钢零部件 CNC 加工。设备：CNC 5台，数控车10台。服务新能源行业，优势是质量稳定、交期靠谱、客户认可度高。</p>
+            <div class="button-row">
+              <a class="btn primary" href="#quote">来图报价</a>
+              <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+            </div>
+          </div>
+          <figure class="panel photo-card">
+            <img src="../images/product-parts.png" alt="不锈钢产品照片" />
+            <figcaption>展示产品照片、加工精度、材料和服务行业，让客户更快产生信任。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band" id="case">
+        <div class="wrap">
+          <p class="eyebrow">成功案例</p>
+          <h2>新能源配套不锈钢零部件</h2>
+          <div class="grid-2" style="margin-top: 22px;">
+            <article class="card">
+              <h3>项目A</h3>
+              <div class="meta-grid" style="margin-top: 14px;">
+                <div class="meta-box"><strong>产品类型</strong><span>不锈钢轴套</span></div>
+                <div class="meta-box"><strong>材料</strong><span>304不锈钢</span></div>
+                <div class="meta-box"><strong>数量</strong><span>500件</span></div>
+                <div class="meta-box"><strong>工艺</strong><span>CNC车铣加工</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <h3>项目B</h3>
+              <div class="meta-grid" style="margin-top: 14px;">
+                <div class="meta-box"><strong>产品类型</strong><span>设备连接件</span></div>
+                <div class="meta-box"><strong>材料</strong><span>316不锈钢</span></div>
+                <div class="meta-box"><strong>数量</strong><span>1200件</span></div>
+                <div class="meta-box"><strong>工艺</strong><span>CNC加工 + 检测</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">设备与资质</p>
+            <h2>让客户知道你有实力接单</h2>
+            <ul class="check-list">
+              <li>CNC加工中心 × 5</li>
+              <li>数控车床 × 10</li>
+              <li>三坐标检测仪 × 1</li>
+              <li>ISO9001、ISO14001、IATF16949、CE 展示位</li>
+            </ul>
+          </div>
+          <div class="panel qr-box">
+            <div class="qr-placeholder" aria-label="二维码预留区域"></div>
+            <div>
+              <h3>扫码查看企业演示页</h3>
+              <p class="muted">二维码后续可替换为本页面真实公网链接二维码。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band" id="quote">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">来图报价</p>
+            <h2>客户填写信息后生成模拟询盘</h2>
+            <form class="form panel card" data-inquiry-form>
+              <div class="form-grid">
+                <label>姓名<input name="name" required placeholder="张先生" /></label>
+                <label>电话/微信<input name="contact" required placeholder="电话或微信" /></label>
+                <label>产品名称<input name="product" placeholder="不锈钢轴套" /></label>
+                <label>数量<input name="quantity" placeholder="500件" /></label>
+              </div>
+              <label>上传图纸<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
+              <label>备注<textarea name="note" placeholder="材料、尺寸、工艺要求"></textarea></label>
+              <input type="hidden" name="source" value="不锈钢加工厂演示页" />
+              <button class="btn orange full" type="submit">提交询盘</button>
+              <div class="success-box" data-success></div>
+            </form>
+          </div>
+          <div>
+            <h3>最近客户询盘</h3>
+            <div class="record-list" data-inquiry-list></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap privacy">
+          客户提交的图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
+          未经企业授权，不会向第三方披露客户资料和图纸信息。
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 不锈钢加工厂公网演示页</div></footer>
+    <script src="../script.js"></script>
+  </body>
+</html>

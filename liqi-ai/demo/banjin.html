@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>钣金焊接厂演示 - 溧企AI</title>
+    <meta name="description" content="溧企AI钣金焊接厂演示页，展示激光切割、折弯、焊接结构件和来图报价。" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="../index.html"><span class="brand-mark">溧</span><span>溧企AI<small>钣金焊接厂演示页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="#equipment">设备</a>
+          <a href="#quote">报价</a>
+          <a href="../admin.html">后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">钣金焊接厂演示</p>
+            <h1>溧阳宏达钣金加工</h1>
+            <p class="lead">主营：机箱外壳、设备支架、焊接结构件。设备：激光切割机 2台，折弯机 3台。服务自动化设备、环保设备，小批量也能接。</p>
+            <div class="button-row">
+              <a class="btn primary" href="#quote">上传图纸，获取报价</a>
+              <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+            </div>
+          </div>
+          <figure class="panel photo-card">
+            <img src="../images/workshop.png" alt="钣金焊接车间照片" />
+            <figcaption>适合展示激光切割、折弯、焊接、打磨和检测过程。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band" id="equipment">
+        <div class="wrap">
+          <p class="eyebrow">设备展示</p>
+          <h2>设备总数量：8台/套</h2>
+          <div class="grid-4" style="margin-top: 22px;">
+            <article class="card"><h3>激光切割机</h3><p>2台，支持板材切割和来图下料。</p></article>
+            <article class="card"><h3>折弯机</h3><p>3台，适合机箱外壳和设备支架。</p></article>
+            <article class="card"><h3>焊接工位</h3><p>2套，支持结构件焊接。</p></article>
+            <article class="card"><h3>检测工具</h3><p>1套，尺寸检查和出货确认。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">服务行业</p>
+            <h2>自动化设备、环保设备、电子产品</h2>
+            <ul class="check-list">
+              <li>机箱外壳、设备支架、焊接结构件</li>
+              <li>报价快、响应快、小批量可接</li>
+              <li>支持 PDF、DWG、STEP、JPG 图纸上传演示</li>
+            </ul>
+          </div>
+          <div class="panel qr-box">
+            <div class="qr-placeholder" aria-label="二维码预留区域"></div>
+            <div>
+              <h3>扫码查看企业演示页</h3>
+              <p class="muted">二维码后续可替换为本页面真实公网链接二维码。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap gallery">
+          <figure class="panel"><img src="../images/workshop.png" alt="车间照片" /><figcaption>车间照片</figcaption></figure>
+          <figure class="panel"><img src="../images/cnc-machine.png" alt="切割设备照片" /><figcaption>切割设备照片</figcaption></figure>
+          <figure class="panel"><img src="../images/product-parts.png" alt="产品照片" /><figcaption>产品照片</figcaption></figure>
+          <figure class="panel"><img src="../images/inspection-equipment.png" alt="检测设备照片" /><figcaption>检测设备照片</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="section" id="quote">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">来图报价</p>
+            <h2>提交后生成演示询盘记录</h2>
+            <form class="form panel card" data-inquiry-form>
+              <div class="form-grid">
+                <label>姓名<input name="name" required placeholder="王经理" /></label>
+                <label>电话/微信<input name="contact" required placeholder="电话或微信" /></label>
+                <label>产品名称<input name="product" placeholder="设备支架" /></label>
+                <label>数量<input name="quantity" placeholder="80套" /></label>
+              </div>
+              <label>上传图纸<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
+              <label>备注<textarea name="note" placeholder="板厚、材料、表面处理、交期"></textarea></label>
+              <input type="hidden" name="source" value="钣金焊接厂演示页" />
+              <button class="btn orange full" type="submit">提交询盘</button>
+              <div class="success-box" data-success></div>
+            </form>
+          </div>
+          <div>
+            <h3>最近客户询盘</h3>
+            <div class="record-list" data-inquiry-list></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap privacy">
+          客户提交的图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
+          未经企业授权，不会向第三方披露客户资料和图纸信息。
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 钣金焊接厂公网演示页</div></footer>
+    <script src="../script.js"></script>
+  </body>
+</html>

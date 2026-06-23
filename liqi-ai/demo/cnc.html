@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>机械加工厂演示 - 溧企AI</title>
+    <meta name="description" content="溧企AI机械加工厂演示页，展示 CNC 加工、数控车床、设备能力、来图报价和联系方式。" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="../index.html"><span class="brand-mark">溧</span><span>溧企AI<small>机械加工厂演示页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="#equipment">设备</a>
+          <a href="#quote">来图报价</a>
+          <a href="../admin.html">后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">机械加工厂演示</p>
+            <h1>溧阳精工机械加工</h1>
+            <p class="lead">主营：<span data-config="product">CNC 加工</span>。服务新能源、自动化设备、汽车零部件客户，支持来图加工、打样、小批量和批量生产。</p>
+            <div class="button-row">
+              <a class="btn primary" href="#quote">上传图纸，获取报价</a>
+              <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+            </div>
+            <div class="trust-list">
+              <div class="trust-item">交期靠谱</div>
+              <div class="trust-item">质量稳定</div>
+              <div class="trust-item">可小批量打样</div>
+            </div>
+          </div>
+          <figure class="panel photo-card">
+            <img src="../images/cnc-machine.png" alt="CNC加工中心照片" />
+            <figcaption>CNC加工中心、数控车床、检测设备齐全，适合客户快速判断加工能力。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band" id="equipment">
+        <div class="wrap">
+          <p class="eyebrow">设备能力</p>
+          <h2>设备总数量：24台/套</h2>
+          <div class="grid-4" style="margin-top: 22px;">
+            <article class="card"><h3>CNC加工中心</h3><p>5台，适合铝件、不锈钢件、精密零部件。</p></article>
+            <article class="card"><h3>数控车床</h3><p>10台，支持轴套、法兰、圆柱类零件。</p></article>
+            <article class="card"><h3>铣床/钻床</h3><p>8台，满足常规机加工配套。</p></article>
+            <article class="card"><h3>三坐标检测仪</h3><p>1台，支持尺寸检测和质量确认。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">服务行业</p>
+            <h2>新能源、汽车零部件、自动化设备</h2>
+            <ul class="check-list">
+              <li>可按图纸、样品、工艺要求报价</li>
+              <li>支持 PDF、DWG、STEP、JPG 图纸上传演示</li>
+              <li>质量认证：ISO9001、ISO14001、IATF16949、CE 展示位</li>
+            </ul>
+          </div>
+          <div class="panel qr-box">
+            <div class="qr-placeholder" aria-label="二维码预留区域"></div>
+            <div>
+              <h3>扫码查看企业演示页</h3>
+              <p class="muted">二维码后续可替换为本页面真实公网链接二维码。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap">
+          <p class="eyebrow">合作流程</p>
+          <div class="flow">
+            <div class="flow-step">发送图纸</div>
+            <div class="flow-step">评估工艺</div>
+            <div class="flow-step">报价</div>
+            <div class="flow-step">打样</div>
+            <div class="flow-step">批量生产</div>
+            <div class="flow-step">发货</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quote">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">来图报价</p>
+            <h2>上传图纸，获取报价</h2>
+            <form class="form panel card" data-inquiry-form>
+              <div class="form-grid">
+                <label>姓名<input name="name" required placeholder="张先生" /></label>
+                <label>电话/微信<input name="contact" required placeholder="电话或微信" /></label>
+                <label>产品名称<input name="product" placeholder="轴套/支架/法兰" /></label>
+                <label>数量<input name="quantity" placeholder="500件" /></label>
+              </div>
+              <label>上传图纸<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
+              <label>备注<textarea name="note" placeholder="材料、工艺、交期要求"></textarea></label>
+              <input type="hidden" name="source" value="机械加工厂演示页" />
+              <button class="btn orange full" type="submit">提交询盘</button>
+              <div class="success-box" data-success></div>
+            </form>
+          </div>
+          <div>
+            <h3>最近客户询盘</h3>
+            <div class="record-list" data-inquiry-list></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap privacy">
+          客户提交的图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
+          未经企业授权，不会向第三方披露客户资料和图纸信息。
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 机械加工厂公网演示页</div></footer>
+    <script src="../script.js"></script>
+  </body>
+</html>

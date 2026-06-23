@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>企业后台演示 - 溧企AI</title>
+    <meta name="description" content="溧企AI企业后台演示，可修改电话、微信、主营产品、设备信息，查看询盘演示。" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>企业后台演示</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="demo/cnc.html">机械加工</a>
+          <a href="demo/buxiugang.html">不锈钢</a>
+          <a href="demo/banjin.html">钣金焊接</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="wrap">
+        <p class="eyebrow">后台入口 /admin.html</p>
+        <h1 style="font-size: clamp(34px, 5vw, 54px);">企业后台演示</h1>
+        <p class="lead">当前阶段先做前端演示，不接真实数据库。点击保存后使用 localStorage 保存到当前浏览器。</p>
+
+        <div class="admin-layout" style="margin-top: 24px;">
+          <form class="panel card form" data-admin-form>
+            <div class="form-grid">
+              <label>联系电话<input name="phone" placeholder="13961109605" /></label>
+              <label>微信号<input name="wechat" placeholder="liqi-ai-demo" /></label>
+              <label>邮箱<input name="email" placeholder="1105349573@qq.com" /></label>
+              <label>主营产品<input name="product" placeholder="不锈钢零部件 CNC 加工" /></label>
+            </div>
+            <label>设备信息<textarea name="equipment" placeholder="CNC加工中心 5台，数控车床 10台"></textarea></label>
+            <label>上传图片演示<input name="images" type="file" accept="image/*" multiple /></label>
+            <p class="muted" data-image-hint>暂未选择图片</p>
+            <button class="btn primary full" type="submit">保存资料</button>
+            <div class="success-box" data-admin-success></div>
+          </form>
+
+          <aside class="panel card admin-preview">
+            <h3>前台展示预览</h3>
+            <ul class="plain-list">
+              <li>电话：<span data-config="phone"></span></li>
+              <li>微信：<span data-config="wechat"></span></li>
+              <li>邮箱：<span data-config="email"></span></li>
+              <li>主营产品：<span data-config="product"></span></li>
+              <li>设备信息：<span data-config="equipment"></span></li>
+            </ul>
+            <div class="button-row">
+              <a class="btn outline" data-phone-link href="tel:13961109605">测试电话拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>复制微信</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <section class="section band">
+      <div class="wrap">
+        <p class="eyebrow">询盘管理演示</p>
+        <h2>查看询盘演示</h2>
+        <div class="record-list" data-inquiry-list></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap privacy">
+        客户提交的图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
+        未经企业授权，不会向第三方披露客户资料和图纸信息。
+      </div>
+    </section>
+
+    <footer class="footer"><div class="wrap">保存成功，前台展示内容已更新。</div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
