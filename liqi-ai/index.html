@@ -13,12 +13,12 @@
       <div class="wrap topbar-inner">
         <a class="brand" href="index.html">
           <span class="brand-mark">溧</span>
-          <span>溧企AI<small>AI企业官网、获客、接单、自动运营系统</small></span>
+          <span>溧企AI<small>溧阳中小企业 AI 官网 + 获客系统</small></span>
         </a>
         <nav class="nav" aria-label="主导航">
           <a href="#aiStudio">AI生成官网</a>
           <a href="#cases">案例</a>
-          <a href="#quote">来图报价</a>
+          <a href="#quote">提交需求</a>
           <a href="#admin">后台演示</a>
           <a href="admin.html">企业后台</a>
         </nav>
@@ -31,11 +31,11 @@
           <div class="panel hero-main">
             <p class="eyebrow">AI + 公网 + DeepSeek 接入方案</p>
             <h1>溧企AI</h1>
-            <p class="lead">溧企AI = AI企业官网 + AI获客系统 + AI接单助手 + AI自动运营系统。不会写文案、不懂建网站，也能 10 分钟生成企业官网、产品介绍、报价沟通页面。</p>
-            <p class="lead">老板只要提供企业名称、主营业务、产品/服务和联系方式，我们先用“假AI”演示，后续可接 DeepSeek 真 AI。</p>
+            <p class="lead">面向溧阳所有中小企业的 AI 官网 + 获客工具。机械加工、食品加工、电商、服务行业都能用，不会写文案、不懂建网站，也能生成企业展示、产品/服务介绍、客户入口和招聘内容。</p>
+            <p class="lead">老板只要选择行业，输入企业名称、主营业务、产品/服务和联系方式，我们先用“假AI”演示，后续可接 DeepSeek 真 AI。</p>
             <div class="button-row">
               <a class="btn primary" href="#aiStudio">AI生成官网</a>
-              <a class="btn orange" href="#quote">发企业资料，免费做演示版</a>
+              <a class="btn orange" href="#quote">提交企业资料，免费做演示版</a>
               <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
             </div>
             <div class="trust-list">
@@ -46,14 +46,27 @@
           </div>
           <aside class="hero-side">
             <figure class="panel photo-card">
-              <img src="images/workshop.png" alt="溧阳制造企业车间照片" />
-              <figcaption>让客户一打开链接，就知道你做什么、有什么设备、能不能报价、怎么联系你。</figcaption>
+              <img src="images/workshop.png" alt="溧阳企业展示照片" />
+              <figcaption>让客户一打开链接，就知道你做什么、有什么优势、能不能合作、怎么联系你。</figcaption>
             </figure>
             <div class="panel quick-card">
               <h3>公网演示链接</h3>
               <p>发布后可复制链接发给老板、客户，也可以放到微信、朋友圈、抖音企业主页和企业二维码名片里。</p>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow">新增第一步：行业选择</p>
+          <h2>先选行业，再让 AI 自动适配页面结构</h2>
+          <div class="grid-4" style="margin-top: 22px;">
+            <article class="card"><h3>机械加工</h3><p>展示设备、产品、加工能力、提交需求。</p></article>
+            <article class="card"><h3>食品加工</h3><p>展示产品、生产环境、资质证书、销售渠道。</p></article>
+            <article class="card"><h3>电商企业</h3><p>展示产品、卖点、用户评价、购买方式。</p></article>
+            <article class="card"><h3>服务行业</h3><p>展示服务内容、案例、价格说明、联系方式。</p></article>
+          </div>
         </div>
       </section>
 
@@ -64,27 +77,44 @@
               <p class="eyebrow">AI生成官网 / AI内容生成 / AI接单建议</p>
               <h2>先用“假AI”演示，按钮仍然叫 AI 生成</h2>
               <div class="form-grid">
-                <label>企业名称<input name="enterprise" value="溧企AI示例工厂" /></label>
-                <label>主营业务<input name="business" value="制造加工" /></label>
-                <label>产品/服务<input name="products" value="CNC加工、钣金焊接、来图报价" /></label>
+                <label>选择行业
+                  <select name="industry">
+                    <option value="machining">机械加工</option>
+                    <option value="sheetmetal">钣金焊接</option>
+                    <option value="automation">自动化设备</option>
+                    <option value="energy">新能源</option>
+                    <option value="food">食品加工</option>
+                    <option value="packaging">包装印刷</option>
+                    <option value="ecommerce">电商企业</option>
+                    <option value="service">服务行业</option>
+                    <option value="other" selected>其他</option>
+                  </select>
+                </label>
+                <label>企业名称<input name="enterprise" value="溧企AI示例企业" /></label>
+                <label>主营业务<input name="business" value="企业服务" /></label>
+                <label>产品/服务<input name="products" value="产品/服务、企业优势、客户案例" /></label>
                 <label>联系方式<input name="contact" value="微信、电话、邮箱" /></label>
                 <label>客户名称<input name="customer" value="张先生" /></label>
-                <label>客户需求<input name="demand" value="来图加工、询价、打样" /></label>
+                <label>客户需求<input name="demand" value="合作咨询、报价需求、服务预约" /></label>
                 <label>预算<input name="budget" value="预算待确认" /></label>
-                <label>风险提示<input name="risk" value="交期、工艺、账期" /></label>
+                <label>风险提示<input name="risk" value="价格、交付、服务边界" /></label>
               </div>
+              <p class="muted" data-industry-template>其他行业模板：企业展示、产品/服务、联系方式、客户入口</p>
               <div class="ai-toolbar">
                 <button class="btn primary" type="button" data-ai-action="intro">AI企业简介</button>
                 <button class="btn primary" type="button" data-ai-action="product">AI产品介绍</button>
                 <button class="btn primary" type="button" data-ai-action="promote">AI推广文案</button>
-              <button class="btn primary" type="button" data-ai-action="analysis">AI客户分析</button>
-              <button class="btn primary" type="button" data-ai-action="advice">AI接单建议</button>
-              <button class="btn outline" type="button" data-ai-action="find">AI找客户</button>
-              <button class="btn outline" type="button" data-ai-action="follow">AI跟进提醒</button>
-              <button class="btn outline" type="button" data-ai-action="plan">AI自动运营</button>
-              <button class="btn outline" type="button" data-ai-action="video15">15秒脚本</button>
-              <button class="btn outline" type="button" data-ai-action="video30">30秒脚本</button>
-            </div>
+                <button class="btn primary" type="button" data-ai-action="analysis">AI客户分析</button>
+                <button class="btn primary" type="button" data-ai-action="advice">AI接单建议</button>
+                <button class="btn outline" type="button" data-ai-action="find">AI获客建议</button>
+                <button class="btn outline" type="button" data-ai-action="follow">AI跟进提醒</button>
+                <button class="btn outline" type="button" data-ai-action="plan">AI自动运营</button>
+                <button class="btn outline" type="button" data-ai-action="recruit">AI招聘</button>
+                <button class="btn outline" type="button" data-ai-action="card">AI名片</button>
+                <button class="btn outline" type="button" data-ai-action="diagnosis">AI页面诊断</button>
+                <button class="btn outline" type="button" data-ai-action="video15">15秒脚本</button>
+                <button class="btn outline" type="button" data-ai-action="video30">30秒脚本</button>
+              </div>
             </div>
             <div class="panel card ai-stack">
               <div>
@@ -115,6 +145,14 @@
                   <h3>AI跟进提醒</h3>
                   <div class="ai-output" data-ai-output="follow">点击按钮生成内容。</div>
                 </article>
+                <article class="card">
+                  <h3>AI招聘</h3>
+                  <div class="ai-output" data-ai-output="recruit">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI页面诊断</h3>
+                  <div class="ai-output" data-ai-output="diagnosis">点击按钮生成内容。</div>
+                </article>
               </div>
             </div>
           </div>
@@ -126,11 +164,11 @@
           <div class="grid-3">
             <article class="card">
               <h3>能不能接订单？</h3>
-              <p>展示主营产品、设备能力、成功案例和来图报价入口，让客户更快判断是否能合作。</p>
+              <p>展示主营业务、产品/服务、成功案例和提交需求入口，让客户更快判断是否能合作。</p>
             </article>
             <article class="card">
               <h3>能不能展示实力？</h3>
-              <p>展示 CNC、焊接、切割、检测设备、车间实拍、产品图库和质量认证。</p>
+              <p>展示产品、服务现场、门店/车间、案例、资质、评价和企业优势。</p>
             </article>
             <article class="card">
               <h3>客户能不能联系我？</h3>
@@ -143,13 +181,13 @@
       <section class="section" id="cases">
         <div class="wrap">
           <p class="eyebrow">企业演示页</p>
-          <h2>三个老板视角案例，手机电脑都能打开</h2>
+          <h2>先保留制造业案例，后续可继续扩展食品、电商、服务行业</h2>
           <div class="grid-3" style="margin-top: 22px;">
             <article class="panel case-card">
               <img src="images/cnc-machine.png" alt="机械加工厂 CNC 设备" />
               <div class="case-body">
                 <h3>机械加工厂演示</h3>
-                <p class="muted">CNC加工中心、数控车床、来图报价、小批量打样。</p>
+                <p class="muted">CNC加工中心、数控车床、提交需求、小批量打样。</p>
                 <a class="btn primary" href="demo/cnc.html">进入演示页</a>
               </div>
             </article>
@@ -176,12 +214,37 @@
       <section class="section band">
         <div class="wrap">
           <p class="eyebrow">获客来源</p>
-          <h2>让客户从不同入口都能找到工厂</h2>
+          <h2>让客户从不同入口都能找到企业</h2>
           <div class="grid-5 grid-4" style="margin-top: 22px;">
-            <article class="card"><h3>百度搜索</h3><p>客户搜产品和加工能力时能看到企业页面。</p></article>
+            <article class="card"><h3>百度搜索</h3><p>客户搜索产品、服务和企业能力时能看到页面。</p></article>
             <article class="card"><h3>微信转发</h3><p>业务员直接把链接发给客户。</p></article>
             <article class="card"><h3>朋友圈分享</h3><p>老板展示设备、产品和案例。</p></article>
             <article class="card"><h3>抖音企业主页</h3><p>把官网链接放到主页资料里。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">AI自动运营与推广</p>
+            <h2>让 AI 帮企业维护网页、更新动态、生成推广内容</h2>
+            <p class="lead">演示版先生成企业动态、产品/服务更新、客户案例、朋友圈文案、短视频脚本和推广任务清单。正式版可接服务器、定时任务、DeepSeek 和平台接口。</p>
+            <ul class="check-list">
+              <li>根据行业热点、政策变化、节日节点生成企业动态</li>
+              <li>自动优化标题、关键词、页面描述和页面结构</li>
+              <li>生成适合微信、百度、抖音、行业群的推广文案</li>
+              <li>提醒老板今天该更新什么、发到哪里、跟进谁</li>
+            </ul>
+          </div>
+          <div class="panel card">
+            <h3>推广到哪些地方</h3>
+            <ul class="plain-list">
+              <li>百度：生成 SEO 标题、关键词、页面描述和企业内容页</li>
+              <li>抖音：生成 15 秒/30 秒脚本、拍摄建议和主页介绍</li>
+              <li>微信：生成朋友圈文案、客户介绍话术和二维码名片</li>
+              <li>线下：生成扫码海报、展会名片和客户入口链接</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -191,11 +254,11 @@
           <div>
             <p class="eyebrow">免费体验版</p>
             <h2>免费生成企业演示版</h2>
-            <p class="lead">仅需提供：企业名称、主营产品、设备照片、联系电话，然后生成一个可转发的公网链接。按钮仍然写 AI 生成，先演示，后接真实 AI。</p>
+            <p class="lead">仅需提供：行业、企业名称、主营产品/服务、图片、联系电话，然后生成一个可转发的公网链接。按钮仍然写 AI 生成，先演示，后接真实 AI。</p>
             <ul class="check-list">
               <li>支持微信打开和转发</li>
               <li>支持手机扫码访问</li>
-              <li>支持客户来图报价</li>
+              <li>支持客户提交需求</li>
               <li>支持老板后台演示修改资料</li>
             </ul>
           </div>
@@ -212,20 +275,20 @@
       <section class="section band" id="quote">
         <div class="wrap grid-2">
           <div>
-            <p class="eyebrow">来图报价</p>
+            <p class="eyebrow">客户入口</p>
             <h2>客户提交询盘后，页面立即显示演示记录</h2>
             <p class="lead">当前阶段不接真实后台数据库，先做前端演示版，方便给老板看流程。</p>
             <form class="form panel card" data-inquiry-form>
               <div class="form-grid">
                 <label>姓名<input name="name" placeholder="例如：张先生" required /></label>
                 <label>电话/微信<input name="contact" placeholder="电话或微信" required /></label>
-                <label>产品名称<input name="product" placeholder="例如：不锈钢轴套" /></label>
+                <label>产品/服务<input name="product" placeholder="例如：产品采购、服务预约、合作咨询" /></label>
                 <label>数量<input name="quantity" placeholder="例如：500件" /></label>
               </div>
-              <label>上传图纸演示<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
-              <label>备注<textarea name="note" placeholder="材料、工艺、交期要求"></textarea></label>
-              <input type="hidden" name="source" value="首页来图报价" />
-              <button class="btn orange full" type="submit">提交询盘</button>
+              <label>上传文件演示<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
+              <label>需求内容<textarea name="note" placeholder="请填写合作咨询、报价需求、服务预约或其他说明"></textarea></label>
+              <input type="hidden" name="source" value="首页提交需求" />
+              <button class="btn orange full" type="submit">提交需求</button>
               <div class="success-box" data-success></div>
             </form>
           </div>
@@ -262,8 +325,8 @@
       <section class="section">
         <div class="wrap">
           <div class="privacy">
-            客户提交的图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
-            未经企业授权，不会向第三方披露客户资料和图纸信息。
+            客户提交的文件/图纸、电话、微信和询盘内容，仅企业老板本人可见，不会公开展示。<br />
+            未经企业授权，不会向第三方披露客户资料和文件/图纸信息。
           </div>
         </div>
       </section>
@@ -275,7 +338,7 @@
     </div>
 
     <footer class="footer">
-      <div class="wrap">溧企AI · 想先免费做一个企业演示版？加微信发送：企业名称 + 主营产品 + 设备照片 + 联系电话。</div>
+      <div class="wrap">溧企AI · 想先免费做一个企业演示版？加微信发送：行业 + 企业名称 + 主营产品/服务 + 图片 + 联系电话。</div>
     </footer>
     <script src="script.js"></script>
   </body>
