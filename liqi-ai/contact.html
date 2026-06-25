@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>联系方式 - 溧企AI</title>
+    <meta name="description" content="溧企AI联系方式页，展示微信二维码、电话一键拨号、企业微信和邮箱。" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>联系方式页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="enterprise.html">企业简介</a>
+          <a href="products.html">产品介绍</a>
+          <a href="quote.html">获取报价</a>
+          <a href="admin.html">企业后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">联系方式</p>
+            <h1>扫码联系，来图报价</h1>
+            <p class="lead">电话、微信、企业微信、邮箱都放在这里，方便客户直接联系老板或业务员。</p>
+            <div class="button-row">
+              <a class="btn primary" data-phone-link href="tel:13961109605">电话一键拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>复制微信</button>
+            </div>
+          </div>
+          <div class="panel qr-box">
+            <div class="qr-placeholder" aria-label="二维码预留区域"></div>
+            <div>
+              <h3>微信二维码</h3>
+              <p class="muted">扫码后可直接访问企业演示页，后续替换成真实公网链接二维码即可。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap grid-2">
+          <article class="card">
+            <h3>联系方式</h3>
+            <ul class="plain-list">
+              <li>电话：<span data-config="phone"></span></li>
+              <li>微信：<span data-config="wechat"></span></li>
+              <li>邮箱：<span data-config="email"></span></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>客户入口</h3>
+            <ul class="plain-list">
+              <li>上传图纸</li>
+              <li>获取报价</li>
+              <li>提交询盘</li>
+              <li>老板后台查看</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 联系方式页</div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

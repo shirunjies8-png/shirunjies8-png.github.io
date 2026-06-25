@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>企业简介 - 溧企AI</title>
+    <meta name="description" content="溧企AI企业简介页，展示企业名称、主营业务、设备能力、企业优势和联系方式。" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>企业简介页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="products.html">产品介绍</a>
+          <a href="quote.html">获取报价</a>
+          <a href="contact.html">联系方式</a>
+          <a href="admin.html">企业后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">企业简介</p>
+            <h1 data-config="enterprise">溧企AI示例企业</h1>
+            <p class="lead">主营：<span data-config="business">企业服务</span>。我们把企业名称、产品/服务、设备能力和联系方式整合到一个页面里，客户一打开就能看懂。</p>
+            <div class="button-row">
+              <a class="btn primary" href="quote.html">提交需求</a>
+              <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
+              <button class="btn orange" type="button" data-copy-wechat>复制微信</button>
+            </div>
+          </div>
+          <figure class="panel photo-card">
+            <img src="images/workshop.png" alt="企业车间展示" />
+            <figcaption>车间、设备、产品、资质和联系方式都放在一起，客户看得更快，老板沟通更省心。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap grid-3">
+          <article class="card"><h3>主营业务</h3><p data-config="business">企业服务</p></article>
+          <article class="card"><h3>产品/服务</h3><p data-config="product">企业展示、产品介绍、客户入口、招聘文案</p></article>
+          <article class="card"><h3>企业优势</h3><p data-config="equipment">本地模板生成、DeepSeek 接口预留、手机电脑都能打开</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">老板最关心的内容</p>
+            <h2>能不能展示实力，客户能不能联系我</h2>
+            <ul class="check-list">
+              <li>电话、微信、邮箱放在明显位置</li>
+              <li>支持手机和电脑打开</li>
+              <li>可接入 AI 自动生成企业简介</li>
+              <li>后续可接入 DeepSeek 继续升级</li>
+            </ul>
+          </div>
+          <div class="panel qr-box">
+            <div class="qr-placeholder" aria-label="二维码预留区域"></div>
+            <div>
+              <h3>扫码查看企业演示页</h3>
+              <p class="muted">这块后续可替换为真实公网链接二维码。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 企业简介页</div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

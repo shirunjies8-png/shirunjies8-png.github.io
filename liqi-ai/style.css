@@ -307,6 +307,12 @@ p {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .card {
   padding: 22px;
   border: 1px solid var(--line);
@@ -552,17 +558,53 @@ select:focus {
   gap: 16px;
 }
 
+.ai-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
 .ai-toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
+.ai-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .ai-output {
+  position: relative;
   min-height: 180px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
   white-space: pre-wrap;
   line-height: 1.75;
   color: var(--ink);
+}
+
+.ai-output.is-loading {
+  background: linear-gradient(90deg, rgba(237, 247, 244, 0.65), rgba(255, 255, 255, 0.95));
+}
+
+.ai-output.is-loading::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(11, 111, 100, 0.25);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .ai-grid {
@@ -595,6 +637,39 @@ select:focus {
   color: #dff3ee;
   overflow: auto;
   line-height: 1.75;
+}
+
+.hint-bar {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px dashed var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.loader-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(11, 111, 100, 0.25);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .footer {

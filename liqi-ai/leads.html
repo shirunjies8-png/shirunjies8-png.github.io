@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>询盘记录 - 溧企AI</title>
+    <meta name="description" content="溧企AI询盘记录页，展示最近客户询盘和来源。" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>询盘记录页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="enterprise.html">企业简介</a>
+          <a href="products.html">产品介绍</a>
+          <a href="quote.html">获取报价</a>
+          <a href="admin.html">企业后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">客户线索</p>
+            <h1>最近客户询盘</h1>
+            <p class="lead">页面刷新后会自动恢复 localStorage 里的演示数据，方便老板看见客户留资和跟进效果。</p>
+          </div>
+          <figure class="panel photo-card">
+            <img src="images/workshop.png" alt="车间与客户沟通场景" />
+            <figcaption>百度搜索、微信转发、朋友圈、抖音主页和线下扫码都能导到这里。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap grid-2">
+          <div class="card">
+            <h3>询盘列表</h3>
+            <div class="record-list" data-inquiry-list></div>
+          </div>
+          <div class="card">
+            <h3>线索渠道</h3>
+            <ul class="plain-list">
+              <li>百度搜索</li>
+              <li>微信转发</li>
+              <li>朋友圈分享</li>
+              <li>抖音企业主页</li>
+              <li>客户扫码访问</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 询盘记录页</div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

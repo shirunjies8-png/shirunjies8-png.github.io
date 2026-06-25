@@ -13,6 +13,12 @@
         <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>通用企业后台演示</small></span></a>
         <nav class="nav" aria-label="主导航">
           <a href="index.html">首页</a>
+          <a href="enterprise.html">企业简介</a>
+          <a href="products.html">产品介绍</a>
+          <a href="quote.html">获取报价</a>
+          <a href="leads.html">询盘记录</a>
+          <a href="jobs.html">招聘介绍</a>
+          <a href="contact.html">联系方式</a>
           <a href="demo/cnc.html">机械加工</a>
           <a href="demo/buxiugang.html">不锈钢</a>
           <a href="demo/banjin.html">钣金焊接</a>
@@ -28,14 +34,33 @@
 
         <div class="admin-layout" style="margin-top: 24px;">
           <form class="panel card form" data-admin-form>
-            <div class="form-grid">
-              <label>联系电话<input name="phone" placeholder="13961109605" /></label>
-              <label>微信号<input name="wechat" placeholder="liqi-ai-demo" /></label>
-              <label>邮箱<input name="email" placeholder="1105349573@qq.com" /></label>
-              <label>主营产品/服务<input name="product" placeholder="产品销售、服务预约、加工合作" /></label>
-            </div>
-            <label>优势/能力<textarea name="equipment" placeholder="服务经验、设备能力、渠道优势、案例成果"></textarea></label>
-            <label>上传图片演示<input name="images" type="file" accept="image/*" multiple /></label>
+          <div class="form-grid">
+            <label>联系电话<input name="phone" placeholder="13961109605" /></label>
+            <label>微信号<input name="wechat" placeholder="liqi-ai-demo" /></label>
+            <label>邮箱<input name="email" placeholder="1105349573@qq.com" /></label>
+            <label>企业名称<input name="enterprise" placeholder="溧企AI示例企业" /></label>
+            <label>行业
+              <select name="industry">
+                <option value="machining">机械加工</option>
+                <option value="sheetmetal">钣金焊接</option>
+                <option value="automation">自动化设备</option>
+                <option value="energy">新能源</option>
+                <option value="food">食品加工</option>
+                <option value="packaging">包装印刷</option>
+                <option value="ecommerce">电商企业</option>
+                <option value="service">服务行业</option>
+                <option value="other" selected>其他</option>
+              </select>
+            </label>
+            <label>主营业务<input name="business" placeholder="企业服务、加工制造、销售服务" /></label>
+            <label>主营产品/服务<input name="product" placeholder="产品销售、服务预约、加工合作" /></label>
+            <label>产品服务<input name="products" placeholder="企业展示、产品介绍、客户入口" /></label>
+          </div>
+          <div class="form-grid">
+            <label>设备能力<textarea name="equipment" placeholder="服务经验、设备能力、渠道优势、案例成果"></textarea></label>
+            <label>企业优势<textarea name="advantage" placeholder="质量稳定、交期靠谱、客户认可"></textarea></label>
+          </div>
+          <label>上传图片演示<input name="images" type="file" accept="image/*" multiple /></label>
             <p class="muted" data-image-hint>暂未选择图片</p>
             <button class="btn primary full" type="submit">保存资料</button>
             <div class="success-box" data-admin-success></div>
@@ -64,6 +89,18 @@
         <div class="panel card ai-shell">
           <p class="eyebrow">AI生成区</p>
           <h2>AI企业简介、AI产品介绍、AI推广文案、AI客户分析、AI接单建议</h2>
+          <div class="ai-head">
+            <div class="hint-bar" data-ai-status>当前结果：AI企业简介</div>
+            <div class="ai-controls">
+              <button class="btn outline" type="button" data-ai-copy>复制内容</button>
+              <button class="btn outline" type="button" data-ai-regenerate>重新生成</button>
+              <button class="btn outline" type="button" data-ai-export>导出 TXT</button>
+            </div>
+          </div>
+          <div class="loader-row" data-ai-loader hidden>
+            <span class="spinner" aria-hidden="true"></span>
+            <span>正在生成内容，请稍等。</span>
+          </div>
           <div class="form-grid">
             <label>选择行业
               <select name="industry">
@@ -96,9 +133,12 @@
             <button class="btn primary" type="button" data-ai-action="advice">AI接单建议</button>
             <button class="btn outline" type="button" data-ai-action="find">AI获客建议</button>
             <button class="btn outline" type="button" data-ai-action="follow">AI跟进提醒</button>
+            <button class="btn outline" type="button" data-ai-action="plan">AI自动运营</button>
             <button class="btn outline" type="button" data-ai-action="recruit">AI招聘</button>
             <button class="btn outline" type="button" data-ai-action="card">AI名片</button>
             <button class="btn outline" type="button" data-ai-action="diagnosis">AI页面诊断</button>
+            <button class="btn outline" type="button" data-ai-action="video15">15秒脚本</button>
+            <button class="btn outline" type="button" data-ai-action="video30">30秒脚本</button>
           </div>
         </div>
         <div class="panel card ai-stack">
@@ -106,7 +146,7 @@
             <span class="badge-pill">DeepSeek 接入预留</span>
             <p class="muted">后端接入时再把 API Key 放到服务器环境变量，不放前端。</p>
           </div>
-          <div class="code-box">POST /api/ai
+          <div class="code-box">POST /api/deepseek
 {
   "model": "deepseek-chat",
   "prompt": "请生成企业简介"
@@ -140,6 +180,10 @@
             <div class="ai-output" data-ai-output="follow">点击按钮生成内容。</div>
           </article>
           <article class="card">
+            <h3>AI自动运营</h3>
+            <div class="ai-output" data-ai-output="plan">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
             <h3>AI招聘</h3>
             <div class="ai-output" data-ai-output="recruit">点击按钮生成内容。</div>
           </article>
@@ -150,6 +194,14 @@
           <article class="card">
             <h3>AI页面诊断</h3>
             <div class="ai-output" data-ai-output="diagnosis">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>15秒脚本</h3>
+            <div class="ai-output" data-ai-output="video15">点击按钮生成内容。</div>
+          </article>
+          <article class="card">
+            <h3>30秒脚本</h3>
+            <div class="ai-output" data-ai-output="video30">点击按钮生成内容。</div>
           </article>
         </div>
       </div>

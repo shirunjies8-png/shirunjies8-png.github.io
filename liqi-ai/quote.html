@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>获取报价 - 溧企AI</title>
+    <meta name="description" content="溧企AI获取报价页，支持上传图纸、提交询盘、查看询盘记录演示。" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>获取报价页</small></span></a>
+        <nav class="nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="enterprise.html">企业简介</a>
+          <a href="products.html">产品介绍</a>
+          <a href="contact.html">联系方式</a>
+          <a href="admin.html">企业后台</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="panel hero-main">
+            <p class="eyebrow">来图报价</p>
+            <h1>提交需求，马上开始报价沟通</h1>
+            <p class="lead">支持 PDF、DWG、STEP、JPG 上传演示。客户提交后页面会直接显示“提交成功”，同时在下方看到最新询盘记录。</p>
+            <div class="button-row">
+              <a class="btn primary" href="#form">上传图纸</a>
+              <a class="btn outline" href="#records">查看询盘记录</a>
+            </div>
+          </div>
+          <figure class="panel photo-card">
+            <img src="images/inspection-equipment.png" alt="检测设备照片" />
+            <figcaption>客户最关心的是能不能做、多久能做、怎么联系，这一页把入口都放清楚。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section band" id="form">
+        <div class="wrap grid-2">
+          <form class="form panel card" data-inquiry-form>
+            <div class="form-grid">
+              <label>姓名<input name="name" required placeholder="张先生" /></label>
+              <label>电话/微信<input name="contact" required placeholder="电话或微信" /></label>
+              <label>产品名称<input name="product" placeholder="轴套/支架/法兰" /></label>
+              <label>数量<input name="quantity" placeholder="500件" /></label>
+            </div>
+            <label>材料<textarea name="note" placeholder="材料、工艺、交期要求"></textarea></label>
+            <label>上传图纸<input name="drawing" type="file" accept=".pdf,.dwg,.step,.jpg,.jpeg,.png" /></label>
+            <input type="hidden" name="source" value="获取报价页" />
+            <button class="btn orange full" type="submit">提交询盘</button>
+            <div class="success-box" data-success></div>
+          </form>
+          <div class="card">
+            <h3>最近客户询盘</h3>
+            <div class="record-list" data-inquiry-list></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="sticky-contact">
+      <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>
+      <button class="btn orange" type="button" data-copy-wechat>微信咨询</button>
+    </div>
+    <footer class="footer"><div class="wrap">溧企AI · 获取报价页</div></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

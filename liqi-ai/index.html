@@ -17,6 +17,12 @@
         </a>
         <nav class="nav" aria-label="主导航">
           <a href="#aiStudio">AI生成官网</a>
+          <a href="enterprise.html">企业简介</a>
+          <a href="products.html">产品介绍</a>
+          <a href="quote.html">获取报价</a>
+          <a href="contact.html">联系方式</a>
+          <a href="leads.html">询盘记录</a>
+          <a href="jobs.html">招聘介绍</a>
           <a href="#cases">案例</a>
           <a href="#quote">提交需求</a>
           <a href="#admin">后台演示</a>
@@ -93,6 +99,8 @@
                 <label>企业名称<input name="enterprise" value="溧企AI示例企业" /></label>
                 <label>主营业务<input name="business" value="企业服务" /></label>
                 <label>产品/服务<input name="products" value="产品/服务、企业优势、客户案例" /></label>
+                <label>设备能力<input name="equipment" value="车间设备、检测设备、加工能力" /></label>
+                <label>企业优势<input name="advantage" value="质量稳定、交期靠谱、沟通及时" /></label>
                 <label>联系方式<input name="contact" value="微信、电话、邮箱" /></label>
                 <label>客户名称<input name="customer" value="张先生" /></label>
                 <label>客户需求<input name="demand" value="合作咨询、报价需求、服务预约" /></label>
@@ -121,8 +129,20 @@
                 <span class="badge-pill">DeepSeek 接入预留</span>
                 <p class="muted">前端按钮先演示，后端再接 `https://api.deepseek.com/v1/chat/completions`，API Key 放后端，不放前端。</p>
               </div>
+              <div class="ai-head">
+                <div class="hint-bar" data-ai-status>当前结果：AI企业简介</div>
+                <div class="ai-controls">
+                  <button class="btn outline" type="button" data-ai-copy>复制内容</button>
+                  <button class="btn outline" type="button" data-ai-regenerate>重新生成</button>
+                  <button class="btn outline" type="button" data-ai-export>导出 TXT</button>
+                </div>
+              </div>
+              <div class="loader-row" data-ai-loader hidden>
+                <span class="spinner" aria-hidden="true"></span>
+                <span>正在生成内容，请稍等。</span>
+              </div>
               <div class="code-box">模型：deepseek-chat
-入口：前端按钮 → 后端接口 → DeepSeek API → 返回结果
+入口：前端按钮 → /api/deepseek → DeepSeek API → 返回结果
 
 示例 Prompt：
 企业简介：你是制造企业营销专家，请生成企业简介
@@ -132,6 +152,18 @@
                 <article class="card">
                   <h3>AI企业简介</h3>
                   <div class="ai-output" data-ai-output="intro">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI产品介绍</h3>
+                  <div class="ai-output" data-ai-output="product">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI推广文案</h3>
+                  <div class="ai-output" data-ai-output="promote">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI客户分析</h3>
+                  <div class="ai-output" data-ai-output="analysis">点击按钮生成内容。</div>
                 </article>
                 <article class="card">
                   <h3>AI接单建议</h3>
@@ -150,8 +182,24 @@
                   <div class="ai-output" data-ai-output="recruit">点击按钮生成内容。</div>
                 </article>
                 <article class="card">
+                  <h3>AI名片</h3>
+                  <div class="ai-output" data-ai-output="card">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
                   <h3>AI页面诊断</h3>
                   <div class="ai-output" data-ai-output="diagnosis">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>AI自动运营</h3>
+                  <div class="ai-output" data-ai-output="plan">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>15秒脚本</h3>
+                  <div class="ai-output" data-ai-output="video15">点击按钮生成内容。</div>
+                </article>
+                <article class="card">
+                  <h3>30秒脚本</h3>
+                  <div class="ai-output" data-ai-output="video30">点击按钮生成内容。</div>
                 </article>
               </div>
             </div>

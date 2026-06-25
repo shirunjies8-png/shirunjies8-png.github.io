@@ -1,334 +1,752 @@
-(function () {
-  const STORAGE_CONFIG = "liqiAiAdminData";
-  const STORAGE_INQUIRIES = "liqiAiInquiries";
-  const STORAGE_AI_DRAFT = "liqiAiAiDraft";
+(() => {
+  const STORAGE = {
+    admin: "liqiAiAdminData",
+    inquiries: "liqiAiInquiries",
+    draft: "liqiAiAiDraft",
+    activeAction: "liqiAiActiveAction",
+  };
 
-  const defaultConfig = {
+  const DEFAULT_ADMIN = {
+    enterprise: "溧企AI示例企业",
+    industry: "other",
+    business: "企业服务",
+    products: "企业展示、产品介绍、客户入口、招聘文案",
+    equipment: "本地模板生成、DeepSeek 接口预留、手机电脑都能打开",
+    advantage: "不用懂电脑、不会写文案、有微信电话就能做",
     phone: "13961109605",
     wechat: "liqi-ai-demo",
     email: "1105349573@qq.com",
-    product: "企业产品/服务展示",
-    equipment: "服务经验、产品能力、案例成果、联系方式"
+    customer: "张先生",
+    demand: "合作咨询、报价需求、服务预约",
+    budget: "预算待确认",
+    risk: "价格、交付、服务边界",
   };
 
-  const starterInquiries = [
-    {
-      name: "张先生",
-      contact: "138****2688",
-      product: "合作咨询",
-      quantity: "待确认",
-      note: "想了解产品/服务内容和合作方式",
-      source: "微信转发"
-    },
-    {
-      name: "李经理",
-      contact: "微信：li****88",
-      product: "服务预约",
-      quantity: "1次",
-      note: "希望先沟通需求和时间安排",
-      source: "客户扫码"
-    }
-  ];
-
-  const industryTemplates = {
+  const INDUSTRY_MAP = {
     machining: {
-      label: "机械加工",
-      business: "机械加工",
-      products: "CNC加工、数控车加工、来样来图需求",
-      demand: "加工咨询、文件评估、打样和批量生产",
-      modules: "设备、产品、加工能力、提交需求"
+      name: "机械加工",
+      template: "设备能力、加工精度、来图报价、打样和批量生产",
+      products: "CNC加工中心、数控车床、精密零部件",
+      business: "机械零件加工、精密制造、来图报价",
+      advantage: "交期靠谱、质量稳定、能接小批量打样",
     },
     sheetmetal: {
-      label: "钣金焊接",
-      business: "钣金焊接",
-      products: "激光切割、折弯、焊接结构件",
-      demand: "设备支架、机箱外壳、结构件合作咨询",
-      modules: "设备、工艺、案例、提交需求"
+      name: "钣金焊接",
+      template: "激光切割、折弯、焊接、结构件展示",
+      products: "钣金件、焊接结构件、设备支架",
+      business: "钣金加工、焊接加工、结构件制造",
+      advantage: "报价快、响应快、适合配套合作",
     },
     automation: {
-      label: "自动化设备",
-      business: "自动化设备",
-      products: "自动化设备、产线改造、非标设备",
-      demand: "方案咨询、设备选型、项目合作",
-      modules: "方案、案例、服务流程、联系方式"
+      name: "自动化设备",
+      template: "设备方案、非标定制、案例展示、客户沟通",
+      products: "自动化设备、工装夹具、产线配套",
+      business: "自动化设备设计、制造和配套",
+      advantage: "可定制、能落地、适合项目合作",
     },
     energy: {
-      label: "新能源",
-      business: "新能源配套",
-      products: "新能源零部件、配套加工、项目协作",
-      demand: "配套咨询、样品评估、批量合作",
-      modules: "产品、资质、案例、合作入口"
+      name: "新能源",
+      template: "新能源配套、零部件、资质和案例",
+      products: "新能源零部件、配套组件、结构件",
+      business: "新能源行业配套制造和加工",
+      advantage: "面向项目客户，重视稳定和交付",
     },
     food: {
-      label: "食品加工",
-      business: "食品加工",
-      products: "食品产品、生产环境、销售渠道",
-      demand: "批发合作、渠道咨询、产品采购",
-      modules: "产品、生产环境、资质证书、销售渠道"
+      name: "食品加工",
+      template: "生产环境、产品展示、资质证书、销售渠道",
+      products: "食品加工、包装产品、配送服务",
+      business: "食品生产、包装和销售",
+      advantage: "卫生规范、信息透明、客户更放心",
     },
     packaging: {
-      label: "包装印刷",
-      business: "包装印刷",
-      products: "包装设计、印刷服务、定制包装",
-      demand: "包装定制、打样、批量印刷",
-      modules: "样品、材质、工艺、提交需求"
+      name: "包装印刷",
+      template: "样品展示、工艺说明、交付能力、客户案例",
+      products: "包装盒、标签、印刷品、礼盒",
+      business: "包装设计、印刷加工、批量交付",
+      advantage: "样品清楚、下单方便、交付稳定",
     },
     ecommerce: {
-      label: "电商企业",
-      business: "电商经营",
-      products: "主推产品、卖点、用户评价、购买方式",
-      demand: "产品咨询、渠道合作、批量采购",
-      modules: "产品、卖点、评价、购买方式"
+      name: "电商企业",
+      template: "产品卖点、用户评价、购买方式、售后说明",
+      products: "线上商品、组合套餐、爆款单品",
+      business: "电商销售、商品运营、客户转化",
+      advantage: "页面清楚、转化明确、适合转发",
     },
     service: {
-      label: "服务行业",
-      business: "本地服务",
-      products: "服务内容、案例、价格说明、联系方式",
-      demand: "服务咨询、预约、合作沟通",
-      modules: "服务内容、案例、价格说明、联系方式"
+      name: "服务行业",
+      template: "服务项目、案例、价格说明、联系方式",
+      products: "咨询服务、安装服务、维护服务",
+      business: "企业服务、咨询、交付和售后",
+      advantage: "说清服务、展示案例、方便联系",
     },
     other: {
-      label: "其他行业",
-      business: "企业服务",
-      products: "产品/服务、企业优势、客户案例",
-      demand: "合作咨询、报价需求、业务沟通",
-      modules: "企业展示、产品/服务、联系方式、客户入口"
-    }
+      name: "其他",
+      template: "企业展示、产品/服务、联系方式、客户入口",
+      products: "主营业务、产品/服务、客户案例",
+      business: "企业展示和客户沟通",
+      advantage: "信息清楚、联系方便、适合转发",
+    },
   };
 
-  function readJSON(key, fallback) {
+  const ACTION_META = {
+    intro: { title: "AI企业简介", prompt: "请生成企业简介", output: "intro" },
+    product: { title: "AI产品介绍", prompt: "请生成产品介绍", output: "product" },
+    promote: { title: "AI推广文案", prompt: "请生成推广文案", output: "promote" },
+    analysis: { title: "AI客户分析", prompt: "请生成客户分析", output: "analysis" },
+    advice: { title: "AI接单建议", prompt: "请判断是否建议接单并说明原因", output: "advice" },
+    find: { title: "AI获客建议", prompt: "请生成获客建议", output: "find" },
+    follow: { title: "AI跟进提醒", prompt: "请生成跟进提醒", output: "follow" },
+    plan: { title: "AI自动运营", prompt: "请生成自动运营计划", output: "plan" },
+    recruit: { title: "AI招聘文案", prompt: "请生成招聘文案", output: "recruit" },
+    card: { title: "AI名片", prompt: "请生成企业名片文案", output: "card" },
+    diagnosis: { title: "AI页面诊断", prompt: "请诊断页面并给出优化建议", output: "diagnosis" },
+    video15: { title: "15秒脚本", prompt: "请生成15秒短视频脚本", output: "video15" },
+    video30: { title: "30秒脚本", prompt: "请生成30秒短视频脚本", output: "video30" },
+  };
+
+  const qs = (selector, root = document) => root.querySelector(selector);
+  const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+  function safeParse(json, fallback) {
     try {
-      const value = localStorage.getItem(key);
-      return value ? JSON.parse(value) : fallback;
-    } catch (error) {
+      const value = JSON.parse(json);
+      return value && typeof value === "object" ? value : fallback;
+    } catch {
       return fallback;
     }
   }
 
-  function saveJSON(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+  function loadAdminData() {
+    if (typeof localStorage === "undefined") return { ...DEFAULT_ADMIN };
+    return { ...DEFAULT_ADMIN, ...safeParse(localStorage.getItem(STORAGE.admin), {}) };
   }
 
-  function getConfig() {
-    return { ...defaultConfig, ...readJSON(STORAGE_CONFIG, {}) };
+  function saveAdminData(data) {
+    if (typeof localStorage === "undefined") return;
+    localStorage.setItem(STORAGE.admin, JSON.stringify(data));
   }
 
-  function applyConfig() {
-    const config = getConfig();
-    document.querySelectorAll("[data-config]").forEach((node) => {
+  function loadInquiries() {
+    if (typeof localStorage === "undefined") return [];
+    return safeParse(localStorage.getItem(STORAGE.inquiries), []);
+  }
+
+  function saveInquiries(items) {
+    if (typeof localStorage === "undefined") return;
+    localStorage.setItem(STORAGE.inquiries, JSON.stringify(items.slice(0, 12)));
+  }
+
+  function loadDrafts() {
+    if (typeof localStorage === "undefined") return {};
+    return safeParse(localStorage.getItem(STORAGE.draft), {});
+  }
+
+  function saveDrafts(data) {
+    if (typeof localStorage === "undefined") return;
+    localStorage.setItem(STORAGE.draft, JSON.stringify(data));
+  }
+
+  function getIndustryMeta(value) {
+    return INDUSTRY_MAP[value] || INDUSTRY_MAP.other;
+  }
+
+  function getWorkbenchData(workbench) {
+    const admin = loadAdminData();
+    const values = {};
+    qsa('input[name], select[name], textarea[name]', workbench).forEach((field) => {
+      values[field.name] = field.value;
+    });
+    return {
+      ...admin,
+      ...values,
+      industry: values.industry || admin.industry || "other",
+      industryName: getIndustryMeta(values.industry || admin.industry || "other").name,
+    };
+  }
+
+  function formatLines(lines) {
+    return lines.filter(Boolean).join("\n");
+  }
+
+  function getBulletList(items, title) {
+    return formatLines([title, ...items.map((item) => `- ${item}`)]);
+  }
+
+  function buildIntro(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `${data.enterprise}是一家面向${industry.name}客户的企业，主要围绕${data.business}提供服务。`,
+      `公司目前聚焦${data.products}，同时结合${data.equipment}等能力，帮助客户快速看懂我们的实力。`,
+      `我们希望把复杂的业务说简单，把客户最关心的交期、质量、报价和联系方式放在最前面。`,
+      `企业优势：${data.advantage}。`,
+      `联系信息：电话 ${data.phone}，微信 ${data.wechat}，邮箱 ${data.email}。`,
+    ]);
+  }
+
+  function buildProduct(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `${data.enterprise}的${industry.name}产品/服务介绍：`,
+      `主营内容：${data.products}。`,
+      `业务场景：${data.business}，适合需要快速沟通、明确参数和稳定交付的客户。`,
+      `设备能力：${data.equipment}。`,
+      `核心优势：${data.advantage}。`,
+      `客户可以直接通过电话或微信联系，提交需求后快速确认合作方向。`,
+    ]);
+  }
+
+  function buildPromote(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `朋友圈文案：`,
+      `${data.enterprise}，专注${industry.name}相关业务，主做${data.products}。`,
+      `我们把设备能力、产品展示、客户入口都放在页面里，让客户一眼看懂能不能合作。`,
+      `欢迎有需求的朋友直接联系，电话 ${data.phone}，微信 ${data.wechat}。`,
+      ``,
+      `百度/抖音可用版本：`,
+      `企业名称：${data.enterprise}`,
+      `主营业务：${data.business}`,
+      `关键词方向：${industry.name}、${data.products}、${data.advantage}`,
+    ]);
+  }
+
+  function buildAnalysis(data) {
+    const score = Math.min(98, 68 + Math.min(String(data.products || "").length, 20));
+    const type = score >= 85 ? "高意向客户" : score >= 75 ? "可重点跟进客户" : "普通咨询客户";
+    return formatLines([
+      `客户分析结果：`,
+      `客户类型：${type}`,
+      `合作评分：${score}/100`,
+      `关注点：价格、交期、能力展示、联系方式是否清楚。`,
+      `建议动作：先给对方看设备、案例、联系人，再补充报价或服务边界。`,
+      `当前企业最该强化的是：${data.advantage}。`,
+    ]);
+  }
+
+  function buildAdvice(data) {
+    const positive = data.budget && !String(data.budget).includes("待");
+    const caution = String(data.risk || "").trim();
+    const recommendation = positive ? "建议接单" : "建议先沟通再接单";
+    return formatLines([
+      `接单建议：${recommendation}`,
+      `判断依据：${positive ? "预算已较明确，合作推进更顺" : "预算信息还不够明确，先确认需求更稳妥"}`,
+      caution ? `风险提示：${caution}。` : "风险提示：先确认材料、工艺、交期和验收标准。",
+      `建议话术：先让客户发需求，再对齐数量、材料、工艺和交期，然后给出报价和下一步安排。`,
+    ]);
+  }
+
+  function buildFind(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `获客建议：`,
+      `1. 百度搜索：围绕“${industry.name} + ${data.products}”做标题和内容页。`,
+      `2. 微信转发：把页面链接发给老客户、业务员和合作伙伴。`,
+      `3. 朋友圈分享：用设备照片、案例和老板名片做展示。`,
+      `4. 抖音企业主页：放主页链接，配 15 秒/30 秒视频脚本。`,
+      `5. 线下扫码：展会、名片、车间门口、宣传海报都能用。`,
+    ]);
+  }
+
+  function buildFollow(data) {
+    return formatLines([
+      `跟进提醒：`,
+      `首次回复：您好，已经收到您的需求，我们先核对产品名称、数量、材料和工艺。`,
+      `报价沟通：如方便，请补充图纸或现场照片，我们尽快给您报价。`,
+      `未成交维护：后续如有新项目，也欢迎继续联系 ${data.enterprise}。`,
+    ]);
+  }
+
+  function buildPlan(data) {
+    return formatLines([
+      `自动运营计划：`,
+      `今天：更新一条企业动态，补充一张设备或产品照片。`,
+      `本周：生成一篇产品介绍、一个朋友圈文案和一个短视频脚本。`,
+      `本月：整理一个客户案例、一个报价沟通模板和一个 FAQ 页面。`,
+      `渠道：百度、微信、抖音、行业群、线下扫码同步分发。`,
+    ]);
+  }
+
+  function buildRecruit(data) {
+    return formatLines([
+      `招聘文案：`,
+      `${data.enterprise}正在招聘能长期稳定合作的伙伴，主要围绕${data.business}展开。`,
+      `岗位可写成：业务助理、技术员、操作工、客服/跟单等。`,
+      `公司优势：${data.advantage}。`,
+      `联系方式：电话 ${data.phone}，微信 ${data.wechat}。`,
+    ]);
+  }
+
+  function buildCard(data) {
+    return formatLines([
+      `${data.enterprise}`,
+      `主营：${data.business}`,
+      `产品/服务：${data.products}`,
+      `优势：${data.advantage}`,
+      `电话：${data.phone}`,
+      `微信：${data.wechat}`,
+    ]);
+  }
+
+  function buildDiagnosis(data) {
+    return formatLines([
+      `页面诊断：`,
+      `1. 是否写清企业名称：${data.enterprise ? "已包含" : "需补充"}`,
+      `2. 是否突出主营业务：${data.business ? "已包含" : "需补充"}`,
+      `3. 是否展示设备能力：${data.equipment ? "已包含" : "需补充"}`,
+      `4. 是否放出联系方式：${data.phone && data.wechat ? "已包含" : "需补充"}`,
+      `5. 是否有客户入口：建议放在首屏和页底。`,
+    ]);
+  }
+
+  function buildVideo15(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `15秒短视频脚本：`,
+      `开头：${data.enterprise}，专注${industry.name}，主做${data.products}。`,
+      `中段：展示设备、车间和产品，强调${data.advantage}。`,
+      `结尾：有需求直接联系 ${data.phone}，微信 ${data.wechat}。`,
+    ]);
+  }
+
+  function buildVideo30(data) {
+    const industry = getIndustryMeta(data.industry);
+    return formatLines([
+      `30秒短视频脚本：`,
+      `1. 开场展示企业名称和主营业务：${data.enterprise}，专注${industry.name}。`,
+      `2. 中段展示设备和产品：${data.equipment}，主要服务${data.products}。`,
+      `3. 说明合作价值：${data.advantage}。`,
+      `4. 结尾引导联系：电话 ${data.phone}，微信 ${data.wechat}。`,
+    ]);
+  }
+
+  const LOCAL_BUILDERS = {
+    intro: buildIntro,
+    product: buildProduct,
+    promote: buildPromote,
+    analysis: buildAnalysis,
+    advice: buildAdvice,
+    find: buildFind,
+    follow: buildFollow,
+    plan: buildPlan,
+    recruit: buildRecruit,
+    card: buildCard,
+    diagnosis: buildDiagnosis,
+    video15: buildVideo15,
+    video30: buildVideo30,
+  };
+
+  function buildPrompt(action, data) {
+    const meta = ACTION_META[action];
+    return `${meta ? meta.prompt : action}\n\n企业名称：${data.enterprise}\n行业：${getIndustryMeta(data.industry).name}\n主营业务：${data.business}\n产品/服务：${data.products}\n设备能力：${data.equipment}\n企业优势：${data.advantage}\n联系电话：${data.phone}\n微信号：${data.wechat}`;
+  }
+
+  async function requestDeepSeek(action, data) {
+    const response = await fetch("/api/deepseek", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action,
+        model: "deepseek-chat",
+        prompt: buildPrompt(action, data),
+        payload: data,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`api:${response.status}`);
+    }
+    const body = await response.json();
+    return (
+      body.content ||
+      body.result ||
+      body.text ||
+      body.data?.content ||
+      body.choices?.[0]?.message?.content ||
+      ""
+    ).trim();
+  }
+
+  function generateLocal(action, data) {
+    const builder = LOCAL_BUILDERS[action] || LOCAL_BUILDERS.intro;
+    return builder(data);
+  }
+
+  function renderConfig(data) {
+    qsa("[data-config]").forEach((node) => {
       const key = node.getAttribute("data-config");
-      node.textContent = config[key] || "";
+      const value = data[key] ?? data[key === "product" ? "products" : key] ?? "";
+      node.textContent = value;
     });
-    document.querySelectorAll("[data-phone-link]").forEach((node) => {
-      node.setAttribute("href", "tel:" + config.phone);
+
+    qsa("[data-phone-link]").forEach((node) => {
+      node.setAttribute("href", `tel:${String(data.phone || DEFAULT_ADMIN.phone).replace(/\s+/g, "")}`);
     });
-    document.querySelectorAll("[data-mail-link]").forEach((node) => {
-      node.setAttribute("href", "mailto:" + config.email);
+
+    qsa("[data-copy-wechat]").forEach((node) => {
+      node.dataset.copyValue = data.wechat || DEFAULT_ADMIN.wechat;
     });
   }
 
-  function getInquiries() {
-    return readJSON(STORAGE_INQUIRIES, starterInquiries);
-  }
+  function renderInquiryList() {
+    const list = loadInquiries();
+    qsa("[data-inquiry-list]").forEach((root) => {
+      root.innerHTML = "";
+      if (!list.length) {
+        const empty = document.createElement("div");
+        empty.className = "record";
+        empty.textContent = "暂无询盘，提交后会显示在这里。";
+        root.appendChild(empty);
+        return;
+      }
 
-  function renderInquiries() {
-    const list = document.querySelector("[data-inquiry-list]");
-    if (!list) return;
-    const inquiries = getInquiries();
-    list.innerHTML = inquiries
-      .slice()
-      .reverse()
-      .map((item) => {
-        return `
-          <div class="record">
-            <strong>${escapeHTML(item.name)} · ${escapeHTML(item.product)}</strong>
-            <span>联系方式：${escapeHTML(item.contact)}｜数量：${escapeHTML(item.quantity)}｜来源：${escapeHTML(item.source || "网页询盘")}</span>
-            <span>${escapeHTML(item.note || "等待报价沟通")}</span>
-          </div>
+      list.slice(0, 8).forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "record";
+        row.innerHTML = `
+          <strong>${item.name || "匿名客户"} · ${item.product || "需求咨询"}</strong>
+          <span>联系方式：${item.contact || "-"} ｜ 数量：${item.quantity || "-"} ｜ 来源：${item.source || "-"} </span>
         `;
-      })
-      .join("");
-  }
-
-  function escapeHTML(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function bindInquiryForms() {
-    document.querySelectorAll("[data-inquiry-form]").forEach((form) => {
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const data = new FormData(form);
-        const record = {
-          name: data.get("name") || "客户",
-          contact: data.get("contact") || "待补充",
-          product: data.get("product") || "合作咨询",
-          quantity: data.get("quantity") || "待确认",
-          note: data.get("note") || "客户已提交询盘",
-          source: data.get("source") || "网页询盘"
-        };
-        const inquiries = getInquiries();
-        inquiries.push(record);
-        saveJSON(STORAGE_INQUIRIES, inquiries);
-        form.reset();
-        const success = document.querySelector("[data-success]");
-        if (success) {
-          success.classList.add("show");
-          success.innerHTML = "提交成功<br>您的询盘已生成<br>企业老板可根据您的电话或微信联系您";
-        }
-        renderInquiries();
+        root.appendChild(row);
       });
     });
   }
 
-  function bindWechatButtons() {
-    document.querySelectorAll("[data-copy-wechat]").forEach((button) => {
+  function saveInquiry(entry) {
+    const list = loadInquiries();
+    list.unshift(entry);
+    saveInquiries(list);
+    renderInquiryList();
+  }
+
+  function setMessage(target, text, variant = "info") {
+    if (!target) return;
+    target.textContent = text;
+    target.dataset.variant = variant;
+    target.classList.add("show");
+  }
+
+  function hideMessage(target) {
+    if (!target) return;
+    target.classList.remove("show");
+    target.textContent = "";
+  }
+
+  function setLoading(workbench, action, loading) {
+    const output = qs(`[data-ai-output="${action}"]`, workbench);
+    const status = qs("[data-ai-status]", workbench);
+    const loader = qs("[data-ai-loader]", workbench);
+    const meta = ACTION_META[action];
+    if (output) {
+      output.classList.toggle("is-loading", loading);
+      if (loading) {
+        output.textContent = "正在生成内容...";
+      }
+    }
+    if (loader) {
+      loader.hidden = !loading;
+    }
+    if (loading && status && meta) {
+      status.textContent = loading ? `正在生成 ${meta.title} ...` : `当前结果：${meta.title}`;
+    }
+  }
+
+  function setOutput(workbench, action, text) {
+    const output = qs(`[data-ai-output="${action}"]`, workbench);
+    if (!output) return;
+    output.textContent = text || "点击按钮生成内容。";
+    output.classList.remove("is-loading");
+    const drafts = loadDrafts();
+    drafts[action] = text;
+    saveDrafts(drafts);
+  }
+
+  function getActiveAction(workbench) {
+    return workbench?.dataset.activeAction || "intro";
+  }
+
+  function setActiveAction(workbench, action) {
+    if (!workbench) return;
+    workbench.dataset.activeAction = action;
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(STORAGE.activeAction, action);
+    }
+  }
+
+  async function runAction(workbench, action, options = {}) {
+    const data = getWorkbenchData(workbench);
+    const meta = ACTION_META[action] || ACTION_META.intro;
+    setActiveAction(workbench, action);
+    setLoading(workbench, action, true);
+    await new Promise((resolve) => setTimeout(resolve, 240));
+
+    let text = "";
+    if (!options.localOnly) {
+      try {
+        text = await requestDeepSeek(action, data);
+      } catch {
+        text = "";
+      }
+    }
+
+    if (!text) {
+      text = generateLocal(action, data);
+      const status = qs("[data-ai-status]", workbench);
+      if (status) {
+        status.textContent = `当前结果：${meta.title} · 本地模板生成`;
+      }
+    } else {
+      const status = qs("[data-ai-status]", workbench);
+      if (status) {
+        status.textContent = `当前结果：${meta.title} · DeepSeek 接口返回`;
+      }
+    }
+
+    setOutput(workbench, action, text);
+    setLoading(workbench, action, false);
+    return text;
+  }
+
+  function copyText(text) {
+    if (!text) return Promise.reject(new Error("empty"));
+    if (navigator.clipboard?.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject) => {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "true");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        resolve();
+      } catch (error) {
+        document.body.removeChild(textarea);
+        reject(error);
+      }
+    });
+  }
+
+  function exportText(filename, text) {
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function bindWorkbench(workbench) {
+    const industrySelect = qs('select[name="industry"]', workbench);
+    const status = qs("[data-ai-status]", workbench);
+    const drafts = loadDrafts();
+
+    if (industrySelect) {
+      industrySelect.addEventListener("change", () => {
+        const meta = getIndustryMeta(industrySelect.value);
+        const template = qs("[data-industry-template]", workbench);
+        if (template) {
+          template.textContent = `${meta.name}模板：${meta.template}`;
+        }
+        const products = workbench.querySelector('input[name="products"]');
+        const business = workbench.querySelector('input[name="business"]');
+        const equipment = workbench.querySelector('input[name="equipment"]');
+        const advantage = workbench.querySelector('input[name="advantage"], textarea[name="advantage"]');
+        if (products && (!products.value || products.value === DEFAULT_ADMIN.products)) products.value = meta.products;
+        if (business && (!business.value || business.value === DEFAULT_ADMIN.business)) business.value = meta.business;
+        if (equipment && (!equipment.value || equipment.value === DEFAULT_ADMIN.equipment)) equipment.value = meta.template;
+        if (advantage && (!advantage.value || advantage.value === DEFAULT_ADMIN.advantage)) advantage.value = meta.advantage || DEFAULT_ADMIN.advantage;
+        if (status) {
+          status.textContent = `已切换到 ${meta.name} 模板`;
+        }
+      });
+      const currentMeta = getIndustryMeta(industrySelect.value);
+      const template = qs("[data-industry-template]", workbench);
+      if (template) {
+        template.textContent = `${currentMeta.name}模板：${currentMeta.template}`;
+      }
+    }
+
+    qsa("[data-ai-action]", workbench).forEach((button) => {
       button.addEventListener("click", async () => {
-        const wechat = getConfig().wechat;
-        try {
-          await navigator.clipboard.writeText(wechat);
-          button.textContent = "微信号已复制";
-        } catch (error) {
-          button.textContent = "微信号：" + wechat;
+        const action = button.dataset.aiAction;
+        const text = await runAction(workbench, action);
+        setActiveAction(workbench, action);
+        const stored = loadDrafts();
+        if (stored[action]) {
+          setOutput(workbench, action, stored[action]);
+        } else if (drafts[action]) {
+          setOutput(workbench, action, drafts[action]);
+        } else {
+          setOutput(workbench, action, text);
         }
       });
     });
+
+    const copyButton = qs("[data-ai-copy]", workbench);
+    if (copyButton) {
+      copyButton.addEventListener("click", async () => {
+        const action = getActiveAction(workbench);
+        const output = qs(`[data-ai-output="${action}"]`, workbench);
+        const text = output?.textContent?.trim() || "";
+        if (!text) return;
+        await copyText(text);
+        const status = qs("[data-ai-status]", workbench);
+        if (status) {
+          status.textContent = "内容已复制，可直接粘贴发送。";
+        }
+      });
+    }
+
+    const regenButton = qs("[data-ai-regenerate]", workbench);
+    if (regenButton) {
+      regenButton.addEventListener("click", async () => {
+        const action = getActiveAction(workbench);
+        await runAction(workbench, action);
+      });
+    }
+
+    const exportButton = qs("[data-ai-export]", workbench);
+    if (exportButton) {
+      exportButton.addEventListener("click", () => {
+        const action = getActiveAction(workbench);
+        const output = qs(`[data-ai-output="${action}"]`, workbench);
+        const text = output?.textContent?.trim() || "";
+        if (!text) return;
+        const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+        exportText(`liqi-ai-${action}-${stamp}.txt`, text);
+      });
+    }
+
+    const firstAction = getActiveAction(workbench);
+    if (firstAction && qs(`[data-ai-output="${firstAction}"]`, workbench)?.textContent?.trim() === "点击按钮生成内容。") {
+      const draftText = drafts[firstAction];
+      if (draftText) {
+        setOutput(workbench, firstAction, draftText);
+      }
+    }
+
+    if (status) {
+      status.textContent = `当前结果：${ACTION_META[firstAction]?.title || "AI内容"}`;
+    }
   }
 
-  function bindAdmin() {
-    const form = document.querySelector("[data-admin-form]");
+  function bindAdminForm() {
+    const form = qs("[data-admin-form]");
     if (!form) return;
-    const config = getConfig();
-    Object.keys(config).forEach((key) => {
-      const input = form.querySelector(`[name="${key}"]`);
-      if (input) input.value = config[key];
+    const successBox = qs("[data-admin-success]");
+    const imageHint = qs("[data-image-hint]");
+    const data = loadAdminData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      const field = form.elements.namedItem(key);
+      if (field && field.type !== "file") {
+        field.value = value;
+      }
     });
 
-    const imageInput = form.querySelector('[name="images"]');
-    const imageHint = document.querySelector("[data-image-hint]");
-    if (imageInput && imageHint) {
-      imageInput.addEventListener("change", () => {
-        const names = Array.from(imageInput.files || []).map((file) => file.name);
-        imageHint.textContent = names.length ? "已选择：" + names.join("、") : "暂未选择图片";
+    const copyWechat = qs("[data-copy-wechat]");
+    if (copyWechat) {
+      copyWechat.addEventListener("click", async () => {
+        const current = loadAdminData().wechat || DEFAULT_ADMIN.wechat;
+        await copyText(current);
+        if (successBox) {
+          setMessage(successBox, "微信号已复制。", "success");
+        }
       });
     }
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const data = new FormData(form);
-      const nextConfig = {
-        phone: data.get("phone"),
-        wechat: data.get("wechat"),
-        email: data.get("email"),
-        product: data.get("product"),
-        equipment: data.get("equipment")
-      };
-      saveJSON(STORAGE_CONFIG, nextConfig);
-      applyConfig();
-      const success = document.querySelector("[data-admin-success]");
-      if (success) {
-        success.classList.add("show");
-        success.textContent = "保存成功，前台展示内容已更新";
+      const formData = new FormData(form);
+      const next = loadAdminData();
+      for (const [key, value] of formData.entries()) {
+        if (key === "images") continue;
+        next[key] = String(value);
+      }
+      saveAdminData(next);
+      renderConfig(next);
+      if (successBox) {
+        setMessage(successBox, "保存成功，前台展示内容已更新。", "success");
+      }
+      if (imageHint) {
+        const files = form.elements.namedItem("images")?.files;
+        imageHint.textContent = files && files.length ? `已选择 ${files.length} 张图片，当前为演示保存。` : "资料已保存到当前浏览器。";
       }
     });
-  }
 
-  function buildAiResponse(action, payload) {
-    const template = industryTemplates[payload.industry] || industryTemplates.other;
-    const enterprise = payload.enterprise || "溧企AI示例企业";
-    const business = payload.business || template.business;
-    const products = payload.products || template.products;
-    const contact = payload.contact || "电话、微信";
-    const customer = payload.customer || "潜在客户";
-    const demand = payload.demand || template.demand;
-    const budget = payload.budget || "预算待确认";
-    const risk = payload.risk || "价格、交付、服务边界";
-
-    const responses = {
-      intro: `企业简介（通用版）\n${enterprise} 是一家专注${business}的企业，主营${products}，面向客户提供清晰、可靠、方便沟通的产品与服务。\n\n企业简介（销售版）\n如果你正在找${business}相关合作，可以先把需求发给${enterprise}。我们会根据你的情况整理需求、确认细节，并给出下一步沟通建议。\n\n企业简介（简洁版）\n${enterprise}，主营${products}，支持在线咨询和提交需求。\n\n推荐页面结构\n${template.modules}\n\n客户入口\n${contact}`,
-      product: `产品介绍\n${enterprise} 的核心产品是 ${products}。\n\n客户能看懂的说法\n我们把复杂工艺讲简单，让客户知道材料、工艺、交期和价格怎么来的。\n\n适合的客户需求\n${demand}`,
-      promote: `推广文案\n想了解${business}，可以先看看${enterprise}的企业页面。\n\n页面里有企业介绍、产品/服务、图片展示、客户入口和联系方式，适合微信转发、朋友圈分享、百度搜索、抖音主页和线下扫码。\n\n联系入口：${contact}`,
-      analysis: `客户分析\n客户名称：${customer}\n客户需求：${demand}\n预算判断：${budget}\n主要风险：${risk}\n\n建议\n优先级：中高\n客户类型：有明确需求的咨询客户\n下一步：尽快确认需求内容、预算范围、交付时间和联系方式。`,
-      advice: `接单建议\n是否建议接单：建议跟进\n原因：需求比较明确，可以先沟通细节，再判断预算、交付和服务边界。\n风险提示：注意价格预期、交付时间、服务范围和付款方式。\n\n合作策略\n先确认需求，再给方案或报价；复杂需求先做小范围沟通。`,
-      find: `获客建议\n客户来源：百度搜索、微信转发、朋友圈分享、抖音企业主页、老客户介绍、线下扫码、行业群。\n\n推荐渠道\n优先发布企业页、产品/服务页、案例页和提交需求入口。\n\n每日动作\n更新一条动态、补一张图片、发一条朋友圈、同步一个案例、回复一个询盘。`,
-      follow: `跟进提醒\n当前有 1 个客户未跟进。\n建议联系：张先生\n原因：已经提交需求，沟通窗口还在。\n下一步：确认需求内容、预算范围、交付时间和联系方式。`,
-      plan: `自动运营建议\n今日动作：更新一个产品/服务、补一张图片、发一条朋友圈、同步一个案例、检查客户入口。\n\n标题建议\n${enterprise} | ${business} | 在线咨询\n\n关键词建议\n${business}、${products}、企业展示、客户咨询、联系方式\n\n外部动态维护\n可以根据行业新闻、政策变化、节日节点和市场热点生成企业动态，但正式发布前建议老板确认内容。`,
-      video15: `15秒脚本\n1秒：我们做${products}。\n5秒：可展示产品/服务、案例和联系方式。\n10秒：客户扫码就能联系。\n15秒：点击主页提交需求。`,
-      video30: `30秒脚本\n开头：${enterprise} 专注${business}。\n中段：展示产品/服务、现场图片、案例和客户反馈。\n结尾：支持微信联系、提交需求、快速沟通。`,
-      recruit: `招聘文案\n${enterprise} 招聘${business}相关岗位。\n\n岗位说明\n负责日常业务协作、客户沟通、产品/服务整理和现场支持。\n\n朋友圈招聘内容\n我们正在招人，欢迎踏实靠谱、愿意长期发展的朋友联系。`,
-      card: `AI名片\n一句话介绍：${enterprise}，主营${products}。\n主营：${business}\n联系方式：${contact}\n二维码：可使用当前公网链接生成。`,
-      diagnosis: `页面诊断\n信息完整度：良好\n联系方式：需要放在首页、底部和悬浮按钮\n图片展示：建议至少上传产品/服务、现场、案例、资质图片\n客户入口：建议统一为“提交需求”\n优化建议：减少行业黑话，多写客户能看懂的服务结果。`
-    };
-
-    return responses[action] || "未生成内容";
-  }
-
-  function bindAiWorkbench() {
-    const shell = document.querySelector("[data-ai-workbench]");
-    if (!shell) return;
-
-    const readPayload = () => ({
-      industry: shell.querySelector('[name="industry"]')?.value,
-      enterprise: shell.querySelector('[name="enterprise"]')?.value.trim(),
-      business: shell.querySelector('[name="business"]')?.value.trim(),
-      products: shell.querySelector('[name="products"]')?.value.trim(),
-      contact: shell.querySelector('[name="contact"]')?.value.trim(),
-      customer: shell.querySelector('[name="customer"]')?.value.trim(),
-      demand: shell.querySelector('[name="demand"]')?.value.trim(),
-      budget: shell.querySelector('[name="budget"]')?.value.trim(),
-      risk: shell.querySelector('[name="risk"]')?.value.trim()
-    });
-
-    const applyIndustryTemplate = () => {
-      const selected = shell.querySelector('[name="industry"]');
-      const template = industryTemplates[selected?.value] || industryTemplates.other;
-      const business = shell.querySelector('[name="business"]');
-      const products = shell.querySelector('[name="products"]');
-      const demand = shell.querySelector('[name="demand"]');
-      if (business) business.value = template.business;
-      if (products) products.value = template.products;
-      if (demand) demand.value = template.demand;
-      shell.querySelectorAll("[data-industry-template]").forEach((node) => {
-        node.textContent = `${template.label}模板：${template.modules}`;
+    const imageInput = form.elements.namedItem("images");
+    if (imageInput) {
+      imageInput.addEventListener("change", () => {
+        if (imageHint) {
+          const files = imageInput.files || [];
+          imageHint.textContent = files.length ? `已选择 ${files.length} 张图片，当前仅做前端演示。` : "暂未选择图片";
+        }
       });
-    };
-
-    const render = (action) => {
-      const output = shell.querySelector(`[data-ai-output="${action}"]`);
-      if (!output) return;
-      const text = buildAiResponse(action, readPayload());
-      output.textContent = text;
-      const draft = readJSON(STORAGE_AI_DRAFT, {});
-      draft[action] = text;
-      saveJSON(STORAGE_AI_DRAFT, draft);
-    };
-
-    shell.querySelectorAll("[data-ai-action]").forEach((button) => {
-      button.addEventListener("click", () => render(button.getAttribute("data-ai-action")));
-    });
-
-    shell.querySelectorAll('[name="industry"]').forEach((select) => {
-      select.addEventListener("change", applyIndustryTemplate);
-    });
-
-    const draft = readJSON(STORAGE_AI_DRAFT, {});
-    Object.keys(draft).forEach((key) => {
-      const output = shell.querySelector(`[data-ai-output="${key}"]`);
-      if (output) output.textContent = draft[key];
-    });
-
-    applyIndustryTemplate();
+    }
   }
 
-  applyConfig();
-  bindInquiryForms();
-  bindWechatButtons();
-  bindAdmin();
-  bindAiWorkbench();
-  renderInquiries();
+  function bindInquiryForms() {
+    qsa("[data-inquiry-form]").forEach((form) => {
+      const success = qs("[data-success]", form);
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const entry = {
+          name: String(formData.get("name") || ""),
+          contact: String(formData.get("contact") || ""),
+          product: String(formData.get("product") || ""),
+          quantity: String(formData.get("quantity") || ""),
+          note: String(formData.get("note") || ""),
+          source: String(formData.get("source") || "网页提交"),
+          time: new Date().toLocaleString("zh-CN"),
+        };
+        saveInquiry(entry);
+        form.reset();
+        const source = form.querySelector('input[name="source"]');
+        if (source) source.value = entry.source;
+        if (success) {
+          setMessage(success, "提交成功，您的询盘已生成。企业老板可根据您的电话或微信联系您。", "success");
+        }
+      });
+    });
+  }
+
+  function boot() {
+    const admin = loadAdminData();
+    renderConfig(admin);
+    renderInquiryList();
+    bindAdminForm();
+    bindInquiryForms();
+    qsa("[data-ai-workbench]").forEach(bindWorkbench);
+
+    const drafts = loadDrafts();
+    Object.entries(drafts).forEach(([action, text]) => {
+      qsa(`[data-ai-output="${action}"]`).forEach((node) => {
+        if (node.textContent?.trim() === "点击按钮生成内容。" && text) {
+          node.textContent = text;
+        }
+      });
+    });
+
+    const active = typeof localStorage !== "undefined" ? localStorage.getItem(STORAGE.activeAction) : "";
+    if (active) {
+      qsa("[data-ai-workbench]").forEach((workbench) => {
+        if (qs(`[data-ai-output="${active}"]`, workbench)) {
+          setActiveAction(workbench, active);
+        }
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
 })();
