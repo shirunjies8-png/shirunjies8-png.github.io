@@ -32,46 +32,113 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero hero-landing">
         <div class="wrap hero-grid">
-          <div class="panel hero-main">
-            <p class="eyebrow">AI + 公网 + DeepSeek 接入方案</p>
-            <h1>溧企AI</h1>
-            <p class="lead">面向溧阳所有中小企业的 AI 官网 + 获客工具。机械加工、食品加工、电商、服务行业都能用，不会写文案、不懂建网站，也能生成企业展示、产品/服务介绍、客户入口和招聘内容。</p>
-            <p class="lead">老板只要选择行业，输入企业名称、主营业务、产品/服务和联系方式，我们先用“假AI”演示，后续可接 DeepSeek 真 AI。</p>
-            <div class="button-row">
-              <a class="btn primary" href="#aiStudio">AI生成官网</a>
-              <a class="btn orange" href="#quote">提交企业资料，免费做演示版</a>
-              <a class="btn outline" data-phone-link href="tel:13961109605">电话一键拨号</a>
+          <div class="panel hero-main hero-focus">
+            <p class="eyebrow">让 AI 帮企业 30 秒生成官网</p>
+            <h1>不会写文案？不会做网站？不会推广？</h1>
+            <p class="lead">输入企业信息，AI 自动生成企业官网、产品介绍、招聘页面、询盘系统和 AI 客服，企业官网立即上线。</p>
+            <div class="hero-flow">
+              <div class="flow-chip">输入企业信息</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-chip">AI 自动生成官网</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-chip">AI 自动推广</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-chip">企业官网立即上线</div>
             </div>
-            <div class="trust-list">
-              <div class="trust-item">不用懂电脑</div>
-              <div class="trust-item">不用自己写文案</div>
-              <div class="trust-item">有微信、电话、照片就能做</div>
+            <div class="button-row">
+              <a class="btn primary hero-cta" href="#demo">立即免费生成官网</a>
+              <a class="btn outline" href="#compare">看前后对比</a>
+              <a class="btn orange" href="#assistant">AI 助手悬浮球</a>
+            </div>
+            <div class="trust-list trust-grid">
+              <div class="trust-item">AI 自动写文案</div>
+              <div class="trust-item">AI 自动更新网站</div>
+              <div class="trust-item">老板自己就能管理</div>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-card"><strong data-count="30">0</strong><span>秒生成官网</span></div>
+              <div class="stat-card"><strong data-count="9">0</strong><span>AI 能力中心</span></div>
+              <div class="stat-card"><strong data-count="12">0</strong><span>自动运营任务</span></div>
             </div>
           </div>
           <aside class="hero-side">
-            <figure class="panel photo-card">
-              <img src="images/workshop.png" alt="溧阳企业展示照片" />
-              <figcaption>让客户一打开链接，就知道你做什么、有什么优势、能不能合作、怎么联系你。</figcaption>
-            </figure>
-            <div class="panel quick-card">
-              <h3>公网演示链接</h3>
-              <p>发布后可复制链接发给老板、客户，也可以放到微信、朋友圈、抖音企业主页和企业二维码名片里。</p>
+            <div class="panel quick-card hero-demo-card">
+              <p class="eyebrow">AI 实时生成演示</p>
+              <h3>开始生成</h3>
+              <div class="mini-form">
+                <label>企业名称<input name="demoEnterprise" placeholder="溧阳五四不锈钢" /></label>
+                <label>主营业务<input name="demoBusiness" placeholder="不锈钢零部件 CNC 加工" /></label>
+                <label>所属行业
+                  <select name="demoIndustry">
+                    <option>机械加工</option>
+                    <option>不锈钢加工</option>
+                    <option>钣金焊接</option>
+                    <option>新能源配套</option>
+                    <option>服务行业</option>
+                  </select>
+                </label>
+              </div>
+              <button class="btn primary full" type="button" data-demo-start>开始生成</button>
+              <div class="demo-progress">
+                <div class="demo-progress-bar" data-demo-progress></div>
+              </div>
+              <div class="demo-log" data-demo-log>
+                <div>AI 正在分析企业信息…</div>
+                <div class="demo-chips">
+                  <span>□□□□□□□□</span>
+                </div>
+              </div>
+              <div class="demo-preview" data-demo-preview>等待开始生成。</div>
             </div>
+            <figure class="panel photo-card">
+              <img src="images/workshop.png" alt="企业车间和产品展示" />
+              <figcaption>客户一打开链接，就知道你做什么、有什么设备、能不能报价、怎么联系你。</figcaption>
+            </figure>
           </aside>
         </div>
       </section>
 
       <section class="section">
         <div class="wrap">
-          <p class="eyebrow">新增第一步：行业选择</p>
-          <h2>先选行业，再让 AI 自动适配页面结构</h2>
-          <div class="grid-4" style="margin-top: 22px;">
-            <article class="card"><h3>机械加工</h3><p>展示设备、产品、加工能力、提交需求。</p></article>
-            <article class="card"><h3>食品加工</h3><p>展示产品、生产环境、资质证书、销售渠道。</p></article>
-            <article class="card"><h3>电商企业</h3><p>展示产品、卖点、用户评价、购买方式。</p></article>
-            <article class="card"><h3>服务行业</h3><p>展示服务内容、案例、价格说明、联系方式。</p></article>
+          <p class="eyebrow">AI 功能中心</p>
+          <h2>九宫格能力，一键进入对应页面</h2>
+          <div class="feature-grid nine-grid" style="margin-top: 22px;">
+            <a class="feature-card" href="ai-center.html#generator"><strong>AI 官网生成</strong><span>30 秒生成官网</span></a>
+            <a class="feature-card" href="ai-center.html#product"><strong>AI 产品介绍生成</strong><span>自动写产品卖点</span></a>
+            <a class="feature-card" href="ai-center.html#intro"><strong>AI 企业简介生成</strong><span>老板一看就懂</span></a>
+            <a class="feature-card" href="ai-center.html#recruit"><strong>AI 招聘生成</strong><span>招聘页面自动写</span></a>
+            <a class="feature-card" href="assistant.html"><strong>AI 智能客服</strong><span>回答企业问题</span></a>
+            <a class="feature-card" href="assistant.html#quote"><strong>AI 在线报价</strong><span>询盘与报价沟通</span></a>
+            <a class="feature-card" href="maintenance.html"><strong>AI 网站维护</strong><span>自动更新与检查</span></a>
+            <a class="feature-card" href="promotion.html"><strong>AI 自动推广</strong><span>百度、抖音、微信</span></a>
+            <a class="feature-card" href="data-center.html"><strong>AI 数据分析</strong><span>访问、询盘、转化</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band" id="compare">
+        <div class="wrap grid-2">
+          <div class="card compare-card">
+            <p class="eyebrow">传统方式</p>
+            <h2>花几千元做官网</h2>
+            <ul class="plain-list">
+              <li>找人写文案</li>
+              <li>不会修改</li>
+              <li>不会推广</li>
+              <li>需要找程序员维护</li>
+            </ul>
+          </div>
+          <div class="card compare-card compare-good">
+            <p class="eyebrow">AI 方式</p>
+            <h2>30 秒生成官网</h2>
+            <ul class="plain-list">
+              <li>AI 自动写文案</li>
+              <li>AI 自动更新</li>
+              <li>AI 自动推广</li>
+              <li>老板自己就能管理</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -228,8 +295,14 @@
 
       <section class="section" id="cases">
         <div class="wrap">
-          <p class="eyebrow">企业演示页</p>
-          <h2>先保留制造业案例，后续可继续扩展食品、电商、服务行业</h2>
+          <p class="eyebrow">成功案例</p>
+          <h2>让老板先看到别人已经用它拿到询盘</h2>
+          <div class="grid-3 case-stat-grid" style="margin-top: 22px;">
+            <article class="card success-card"><strong>溧阳五四不锈钢</strong><span>AI 生成官网</span><p>获得 23 个询盘，成交 3 家客户。</p></article>
+            <article class="card success-card"><strong>新能源配件企业</strong><span>AI 自动生成产品介绍</span><p>网站访问提升，客户更快看懂产品。</p></article>
+            <article class="card success-card"><strong>机械加工企业</strong><span>AI 自动生成招聘页面</span><p>招聘效率提升，老板省下大量沟通时间。</p></article>
+          </div>
+          <h3 style="margin-top: 30px;">企业演示页</h3>
           <div class="grid-3" style="margin-top: 22px;">
             <article class="panel case-card">
               <img src="images/cnc-machine.png" alt="机械加工厂 CNC 设备" />
@@ -275,24 +348,74 @@
       <section class="section">
         <div class="wrap grid-2">
           <div>
-            <p class="eyebrow">AI自动运营与推广</p>
-            <h2>让 AI 帮企业维护网页、更新动态、生成推广内容</h2>
-            <p class="lead">演示版先生成企业动态、产品/服务更新、客户案例、朋友圈文案、短视频脚本和推广任务清单。正式版可接服务器、定时任务、DeepSeek 和平台接口。</p>
+            <p class="eyebrow">支持国产 AI 大模型</p>
+            <h2>DeepSeek、私有化部署、企业知识库、RAG 检索都预留好了</h2>
             <ul class="check-list">
-              <li>根据行业热点、政策变化、节日节点生成企业动态</li>
-              <li>自动优化标题、关键词、页面描述和页面结构</li>
-              <li>生成适合微信、百度、抖音、行业群的推广文案</li>
-              <li>提醒老板今天该更新什么、发到哪里、跟进谁</li>
+              <li>支持国产 AI 大模型</li>
+              <li>支持私有化部署</li>
+              <li>支持企业知识库</li>
+              <li>支持 RAG 检索增强</li>
+              <li>支持联网搜索和内部数据训练</li>
+            </ul>
+          </div>
+          <div class="card ai-stack-lite">
+            <h3>企业级 AI 能力</h3>
+            <div class="platform-tags">
+              <span>DeepSeek</span><span>企业知识库</span><span>RAG</span><span>联网搜索</span><span>私有化部署</span><span>内部训练</span>
+            </div>
+            <p class="muted">未来接入后，网站会随着企业资料和客户行为持续学习，做到越用越智能。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">AI 网站维护中心</p>
+            <h2>网站不是固定页面，AI 会每天帮企业维护</h2>
+            <p class="lead">每天自动更新企业新闻、产品信息、行业资讯和招聘信息，同时自动优化 SEO、检查死链、检查图片异常、自动备份和自动恢复。</p>
+            <ul class="check-list">
+              <li>更新企业新闻、产品信息、行业资讯、招聘信息</li>
+              <li>自动优化关键词、标题和页面描述</li>
+              <li>自动检查网站异常、死链接和图片问题</li>
+              <li>自动生成每日运营报告并提醒老板</li>
             </ul>
           </div>
           <div class="panel card">
-            <h3>推广到哪些地方</h3>
+            <h3>AI 每日任务</h3>
             <ul class="plain-list">
-              <li>百度：生成 SEO 标题、关键词、页面描述和企业内容页</li>
-              <li>抖音：生成 15 秒/30 秒脚本、拍摄建议和主页介绍</li>
-              <li>微信：生成朋友圈文案、客户介绍话术和二维码名片</li>
-              <li>线下：生成扫码海报、展会名片和客户入口链接</li>
+              <li>更新企业新闻</li>
+              <li>更新产品信息</li>
+              <li>更新行业资讯</li>
+              <li>更新招聘信息</li>
+              <li>优化关键词和 SEO</li>
+              <li>自动备份与恢复</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap grid-2">
+          <div>
+            <p class="eyebrow">AI 推广中心</p>
+            <h2>把企业内容同步到常见平台</h2>
+            <p class="lead">后续可真正接入推广接口，当前先展示百度、抖音、微信、公众号、视频号、小红书、知乎、B站和今日头条的推广思路。</p>
+            <div class="platform-tags">
+              <span>百度</span><span>抖音</span><span>微信</span><span>微信公众号</span><span>视频号</span><span>小红书</span><span>知乎</span><span>B站</span><span>今日头条</span>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">AI 数据中心</p>
+            <h2>后台实时看访问、询盘和推荐结果</h2>
+            <div class="dashboard-mini">
+              <div class="dash-card"><strong data-count="286">0</strong><span>今日访问人数</span></div>
+              <div class="dash-card"><strong data-count="1220">0</strong><span>今日浏览量</span></div>
+              <div class="dash-card"><strong data-count="18">0</strong><span>AI 回复数量</span></div>
+              <div class="dash-card"><strong data-count="12">0</strong><span>新增询盘</span></div>
+              <div class="dash-card"><strong data-count="8">0</strong><span>新增客户</span></div>
+              <div class="dash-card"><strong data-count="3">0</strong><span>成交客户</span></div>
+            </div>
           </div>
         </div>
       </section>
@@ -379,6 +502,24 @@
         </div>
       </section>
     </main>
+
+    <div class="ai-float" data-ai-assistant>
+      <button class="ai-float-button" type="button" data-assistant-toggle>
+        <span>AI</span>
+        <strong>助手</strong>
+      </button>
+      <div class="ai-float-panel" hidden>
+        <p class="eyebrow">你好</p>
+        <h3>请输入企业名称</h3>
+        <p class="muted">我可以帮您生成官网、产品介绍、招聘页面、报价、企业分析和客户问题回复。</p>
+        <div class="ai-float-actions">
+          <button class="btn outline full" type="button" data-assistant-action="generator">生成官网</button>
+          <button class="btn outline full" type="button" data-assistant-action="product">生成产品介绍</button>
+          <button class="btn outline full" type="button" data-assistant-action="recruit">生成招聘页面</button>
+          <button class="btn outline full" type="button" data-assistant-action="quote">生成报价</button>
+        </div>
+      </div>
+    </div>
 
     <div class="sticky-contact">
       <a class="btn primary" data-phone-link href="tel:13961109605">电话联系</a>

@@ -541,6 +541,118 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  function animateCounter(node, target) {
+    const duration = 900;
+    const start = performance.now();
+    const initial = 0;
+    function tick(now) {
+      const progress = Math.min(1, (now - start) / duration);
+      const value = Math.round(initial + (target - initial) * progress);
+      node.textContent = target >= 1000 ? value.toLocaleString("zh-CN") : String(value);
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function bindRevealMotion() {
+    qsa(".card, .panel, .feature-card, .stat-card, .dash-card, .success-card, .compare-card").forEach((el) => {
+      el.classList.add("reveal");
+    });
+
+    if (!("IntersectionObserver" in window)) {
+      qsa(".reveal").forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    qsa(".reveal").forEach((el) => observer.observe(el));
+  }
+
+  function bindCounters() {
+    qsa("[data-count]").forEach((node) => {
+      const target = Number(node.getAttribute("data-count") || 0);
+      animateCounter(node, target);
+    });
+  }
+
+  function bindDemo() {
+    const startButton = qs("[data-demo-start]");
+    const log = qs("[data-demo-log]");
+    const preview = qs("[data-demo-preview]");
+    const bar = qs("[data-demo-progress]");
+    if (!startButton || !log || !preview || !bar) return;
+
+    const steps = [
+      "AI 正在分析企业信息……",
+      "正在生成企业简介……",
+      "正在生成产品介绍……",
+      "正在生成产品图片……",
+      "正在生成官网……",
+      "正在优化 SEO……",
+      "正在部署网站……",
+    ];
+
+    startButton.addEventListener("click", async () => {
+      const enterprise = qs('input[name="demoEnterprise"]')?.value?.trim() || "示例企业";
+      const business = qs('input[name="demoBusiness"]')?.value?.trim() || "主营业务";
+      const industry = qs('select[name="demoIndustry"]')?.value || "制造业";
+      log.innerHTML = "";
+      preview.textContent = "生成中...";
+      bar.style.width = "0%";
+
+      for (let i = 0; i < steps.length; i += 1) {
+        const row = document.createElement("div");
+        row.textContent = steps[i];
+        log.appendChild(row);
+        bar.style.width = `${Math.min(100, ((i + 1) / steps.length) * 100)}%`;
+        await new Promise((resolve) => setTimeout(resolve, 700));
+      }
+
+      const finish = document.createElement("div");
+      finish.textContent = "生成完成 ✓";
+      finish.className = "demo-finish";
+      log.appendChild(finish);
+      preview.textContent = `${enterprise} · ${industry} · ${business}\n官网、产品介绍、招聘页面、询盘系统与 AI 客服已生成。`;
+    });
+  }
+
+  function bindAssistant() {
+    const shell = qs("[data-ai-assistant]");
+    if (!shell) return;
+    const toggle = qs("[data-assistant-toggle]", shell);
+    const panel = qs(".ai-float-panel", shell);
+    if (!toggle || !panel) return;
+
+    toggle.addEventListener("click", () => {
+      const show = panel.hidden;
+      panel.hidden = !show;
+      shell.classList.toggle("open", show);
+    });
+
+    qsa("[data-assistant-action]", shell).forEach((button) => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.assistantAction;
+        const targets = {
+          generator: "ai-center.html#generator",
+          product: "ai-center.html#product",
+          recruit: "ai-center.html#recruit",
+          quote: "quote.html",
+        };
+        window.location.href = targets[action] || "index.html#demo";
+      });
+    });
+  }
+
   function bindWorkbench(workbench) {
     const industrySelect = qs('select[name="industry"]', workbench);
     const status = qs("[data-ai-status]", workbench);
@@ -724,6 +836,10 @@
     bindAdminForm();
     bindInquiryForms();
     qsa("[data-ai-workbench]").forEach(bindWorkbench);
+    bindDemo();
+    bindAssistant();
+    bindRevealMotion();
+    bindCounters();
 
     const drafts = loadDrafts();
     Object.entries(drafts).forEach(([action, text]) => {
