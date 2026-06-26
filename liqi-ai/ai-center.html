@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI 能力中心 - 溧企AI</title>
-    <meta name="description" content="溧企AI能力中心，展示 AI 官网生成、产品介绍、企业简介和招聘生成。" />
+    <title>AI 中心 - 溧企AI</title>
+    <meta name="description" content="溧企AI AI中心，统一管理官网生成、内容生成、运营、推广、数据和健康评分。" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="wrap topbar-inner">
-        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>AI 能力中心</small></span></a>
+        <a class="brand" href="index.html"><span class="brand-mark">溧</span><span>溧企AI<small>AI 中心</small></span></a>
         <nav class="nav" aria-label="主导航">
           <a href="index.html">首页</a>
+          <a href="health.html">企业健康评分</a>
           <a href="assistant.html">AI 客服</a>
           <a href="maintenance.html">网站维护</a>
           <a href="promotion.html">自动推广</a>
@@ -25,26 +26,75 @@
       <section class="hero">
         <div class="wrap hero-grid">
           <div class="panel hero-main hero-focus">
-            <p class="eyebrow">AI 官网生成</p>
-            <h1>输入企业信息，快速生成企业官网</h1>
-            <p class="lead">支持企业简介、产品介绍、招聘页面和询盘页面，先用本地模板演示，后续可接 DeepSeek 真 AI。</p>
+            <p class="eyebrow">AI 中心</p>
+            <h1>所有高级 AI 能力统一管理</h1>
+            <p class="lead">官网生成、产品介绍、企业简介、招聘、客服、报价、推广、运营、诊断、分析、知识库和数据分析都放在这里。</p>
             <div class="button-row">
-              <a class="btn primary" href="index.html#demo">返回首页体验</a>
-              <a class="btn outline" href="quote.html">进入报价页</a>
+              <a class="btn primary" href="index.html#demo">立即免费生成官网</a>
+              <a class="btn outline" href="health.html">企业健康评分</a>
             </div>
           </div>
           <div class="panel card">
-            <h3 id="intro">AI 企业简介</h3>
-            <p class="muted">输入企业名称、主营业务、行业和优势，自动生成企业简介。</p>
-            <h3 id="product" style="margin-top:16px;">AI 产品介绍</h3>
-            <p class="muted">自动把产品特点、设备能力和适用场景写清楚。</p>
-            <h3 id="recruit" style="margin-top:16px;">AI 招聘生成</h3>
-            <p class="muted">把招聘信息改成普通人看得懂的文案。</p>
+            <h3>统一能力</h3>
+            <div class="platform-tags">
+              <span>AI 官网生成</span><span>AI 产品介绍</span><span>AI 企业简介</span><span>AI 招聘</span><span>AI 客服</span><span>AI 报价</span><span>AI 推广</span><span>AI 运营</span><span>AI 诊断</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section band">
+        <div class="wrap">
+          <p class="eyebrow">AI 功能总览</p>
+          <div class="feature-grid nine-grid" style="margin-top: 22px;">
+            <a class="feature-card" href="index.html#demo"><strong>AI 官网生成</strong><span>30 秒生成官网</span></a>
+            <a class="feature-card" href="index.html#aiStudio"><strong>AI 产品介绍</strong><span>客户更快看懂产品</span></a>
+            <a class="feature-card" href="index.html#aiStudio"><strong>AI 企业简介</strong><span>自动写企业介绍</span></a>
+            <a class="feature-card" href="jobs.html"><strong>AI 招聘</strong><span>招聘页面自动写</span></a>
+            <a class="feature-card" href="assistant.html"><strong>AI 客服</strong><span>回答企业问题</span></a>
+            <a class="feature-card" href="assistant.html#quote"><strong>AI 在线报价</strong><span>报价沟通模板</span></a>
+            <a class="feature-card" href="maintenance.html"><strong>AI 网站维护</strong><span>自动更新与检测</span></a>
+            <a class="feature-card" href="promotion.html"><strong>AI 自动推广</strong><span>同步到常见平台</span></a>
+            <a class="feature-card" href="data-center.html"><strong>AI 数据分析</strong><span>访问、询盘、转化</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap grid-2">
+          <div class="card">
+            <h3>更多 AI 模块</h3>
+            <ul class="plain-list">
+              <li>AI 企业分析</li>
+              <li>AI 企业健康评分</li>
+              <li>AI 客户分析</li>
+              <li>AI 获客建议</li>
+              <li>AI 跟进提醒</li>
+              <li>AI 视频脚本</li>
+              <li>AI 名片</li>
+              <li>AI 知识库</li>
+              <li>AI 多语言官网</li>
+              <li>AI 自动回复</li>
+              <li>AI 邮件生成</li>
+              <li>AI 微信回复</li>
+              <li>AI 风险提醒</li>
+              <li>AI 营销策划</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>正式版路线</h3>
+            <ul class="check-list">
+              <li>先用本地模板演示</li>
+              <li>再接 DeepSeek 真 AI</li>
+              <li>接企业知识库和 RAG</li>
+              <li>接联网搜索和私有化部署</li>
+            </ul>
           </div>
         </div>
       </section>
     </main>
-    <footer class="footer"><div class="wrap">溧企AI · AI 能力中心</div></footer>
+
+    <footer class="footer"><div class="wrap">溧企AI · AI 中心</div></footer>
     <script src="script.js"></script>
   </body>
 </html>
